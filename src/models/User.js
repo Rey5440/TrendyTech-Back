@@ -9,27 +9,27 @@ module.exports = (sequelize) => {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     isAdmin: {
       type: DataTypes.BOOLEAN,
-      allowNull: true,
+      allowNull: false,
     },
     confirmated: {
       type: DataTypes.BOOLEAN,
-      allowNull: true,
+      allowNull: false,
     },
     isDeleted: {
       type: DataTypes.BOOLEAN,
-      allowNull: true,
+      allowNull: false,
     },
   });
 };
