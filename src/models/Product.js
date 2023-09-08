@@ -9,23 +9,23 @@ module.exports = (sequelize) => {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     price: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
     },
     description: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: false,
     },
     stock: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
     },
-    image: {
+    images: {
       type: DataTypes.ARRAY(DataTypes.STRING),
-      allowNull: true,
+      allowNull: false,
     },
     isDeleted: {
       type: DataTypes.BOOLEAN,

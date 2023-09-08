@@ -41,13 +41,10 @@ const { User, TypeProduct, Product, Brand, Color, Sales} = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-Product.hasOne(Brand, {foreignKey: 'productId'});
 Product.belongsTo(Brand, {foreignKey: 'brandId'});
 
-Product.hasOne(Color, {foreignKey: 'productId'});
 Product.belongsTo(Color, {foreignKey: 'colorId'});
 
-Product.hasOne(TypeProduct, {foreignKey: 'productId'});
 Product.belongsTo(TypeProduct, {foreignKey: 'typeId'});
 
 Product.hasMany(Sales, {foreignKey: 'productsId'});
