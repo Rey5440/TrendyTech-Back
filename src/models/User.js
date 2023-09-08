@@ -21,15 +21,19 @@ module.exports = (sequelize) => {
     },
     isAdmin: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      allowNull: true,
     },
     confirmated: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      allowNull: true,
     },
     isDeleted: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      allowNull: true,
+    },
+    token: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   });
 };

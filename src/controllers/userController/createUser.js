@@ -1,5 +1,5 @@
 const { User } = require('../../db/db.js')
-// const {generateToken} = require('../../helpers/generateToken.js')
+const {generateToken} = require('../../helpers/generateToken.js')
 
 
 const createUser = async (name, email, password) => {
@@ -12,7 +12,7 @@ const createUser = async (name, email, password) => {
         name,
         email,
         password,
-        //token: generateToken()
+        token: generateToken()
     });
 
     return user;
