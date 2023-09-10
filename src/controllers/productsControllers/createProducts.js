@@ -22,4 +22,4 @@ const createProduct = async (name, price, description, stock, images, brand, col
     return newProduct.dataValues;
 };
 
-module.exports = createProduct;
+module.exports = createProduct; 
