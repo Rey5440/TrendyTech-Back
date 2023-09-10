@@ -4,13 +4,13 @@ const router = Router();
 const newProductHandler = require("../../handlers/products/newProductsHandler");
 const getAllProductsOrByName = require('../../handlers/products/getProductsHandler');
 
-const {filterProducts} = require('../../controllers/productsControllers/filterProducts')
+const {filter} = require('../../controllers/productsControllers/filterProducts')
 
 
 router.get("/", getAllProductsOrByName);
 router.get('/name?', getAllProductsOrByName)
 
-router.get('/filter?', filterProducts)
+router.get('/filter?', filter)
 
 router.post("/create", newProductHandler);
 // router.get('/', getAllOrByNameProducts)
