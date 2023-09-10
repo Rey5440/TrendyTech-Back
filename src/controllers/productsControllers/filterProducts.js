@@ -1,13 +1,13 @@
 const { Op } = require('sequelize');
-const { Product, Brand, Color } = require('../../db/db');
+const { Product, Brand, Color, TypeProduct } = require('../../db/db');
 
 /*-----------------------------------------------------------------
   Filtrado por marca: http://localhost:3004/products/filter?brand=11 
 -----------------------------------------------------------------*/
 
-/* 
+/* -----------------------------------------------------------------
   Filtrado por color: http://localhost:3004/products/filter?color=11 
-*/
+-----------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------
   Filtrado por marca y color: http://localhost:3004/products/filter?brand=11&color=16 
@@ -23,17 +23,13 @@ const { Product, Brand, Color } = require('../../db/db');
 
 const filterProducts = async (req, res) => {
   try {
-    const { brand, minPrice, maxPrice, color } = req.query;
+    const { brand, minPrice, maxPrice, color, type } = req.query;
     const requiredFiltering = {};
 
-    if (brand) {
-      requiredFiltering.brandId = brand;
-    }
-
-    if (color) {
-      requiredFiltering.colorId = color;
-    }
-
+    if (brand) requiredFiltering.brandId = brand;
+    if (color) requiredFiltering.colorId = color;
+    if (type) requiredFiltering.typeId = type;
+    
     if (minPrice && maxPrice) {
       requiredFiltering.price = {
         [Op.between]: [parseInt(minPrice), parseInt(maxPrice)],
@@ -51,6 +47,10 @@ const filterProducts = async (req, res) => {
           model: Color,
           attributes: ['name'],
         },
+        {
+          model: TypeProduct,
+          attributes: ['name'],
+        }
       ],
       order: [['price', 'ASC']],
     });
