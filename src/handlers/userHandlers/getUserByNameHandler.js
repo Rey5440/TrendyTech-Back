@@ -4,7 +4,6 @@ const { User } = require('../../db/db.js')
 
 const getUserByName = async (req, res) => {
     const { name } = req.query;
-    console.log(name)
     try {
         const userByName = await User.findAll({
             where: {

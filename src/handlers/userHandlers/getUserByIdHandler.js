@@ -2,7 +2,6 @@ const { User } = require("../../db/db.js")
 
 const getUserById = async (req, res) => {
     const { id } = req.params;
-    console.log(id);
     try {
         const userId = await User.findByPk(id)
 

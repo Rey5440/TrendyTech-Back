@@ -1,17 +1,14 @@
 const { Color } = require("../../db/db");
-const { Op } = require("sequelize");
 
-const createColor = async (color) => {
-  const existing = await Color.findOne({
-    where: { name: { [Op.iLike]: `%${color}%` } },
+const createColor = async (colors) => {
+
+  const existing = await Color.findOrCreate({
+    where: { name: colors },
   });
-  if (!existing) {
-    const newColor = await Color.create({
-      name: color,
-    });
-    return newColor.dataValues;
-  }
-  return existing;
+
+  const juanMagic = existing[0].dataValues
+  
+  return juanMagic;
 };
 
 module.exports = createColor;
