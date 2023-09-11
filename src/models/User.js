@@ -40,8 +40,8 @@ module.exports = (sequelize) => {
     timestamps: false
   });
 
-   // Antes de crear o actualizar un usuario, vamos a hashear su contraseña
-   User.beforeCreate(async (user) => {
+  // Antes de crear o actualizar un usuario, vamos a hashear su contraseña
+  User.beforeCreate(async (user) => {
     if (user.changed('password')) {
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(user.password, salt);
@@ -60,7 +60,6 @@ module.exports = (sequelize) => {
   // Devolverá true si la contraseña proporcionada coincide con la
   // contraseña almacenada y false en caso contrario. 
   User.prototype.checkPassword = async function (passwordForm) {
-    console.log("esto es checkpassword",passwordForm, this.password);
     return await bcrypt.compare(passwordForm, this.password);
   };
 

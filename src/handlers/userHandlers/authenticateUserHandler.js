@@ -3,7 +3,6 @@ const { authenticateUser } = require("../../controllers/userController/authentic
 const authenticateUserHandler = async (req, res) => {
 
     const { email, password } = req.body;
-    console.log(email, password);
     try {
         const userData = await authenticateUser(email, password)
 

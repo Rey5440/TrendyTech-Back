@@ -2,7 +2,7 @@ const { confirmAccount } = require("../../controllers/userController/confirmAcco
 
 const confirmAccountHandler = async ( req, res ) => {
     const { token } = req.params;
-    console.log(token);
+  
     try {
         const result = await confirmAccount(token);
         res.status(200).json({ msg: result })

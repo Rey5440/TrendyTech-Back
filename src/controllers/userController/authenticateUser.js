@@ -12,11 +12,8 @@ const authenticateUser = async ( email, password ) => {
     if(!user.confirmated){
         throw new Error("Your count is not confirmed")
     }
-    console.log("Prueba", password, parseInt(password));
     
     const isPasswordCorrect = await user.checkPassword(password)
-
-    console.log(isPasswordCorrect);
 
     if (isPasswordCorrect) {
         return {
