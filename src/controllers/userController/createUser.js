@@ -15,6 +15,13 @@ const createUser = async (name, email, password) => {
         token: generateToken()
     });
 
+    //Email de confirmación, todovia no utilizado.
+    // emailRegister({
+    //     email: user.email,
+    //     name: user.name,
+    //     token: user.token,
+    //   });
+
     return user;
 };
 
