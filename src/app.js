@@ -12,7 +12,7 @@ app.use('/', routes);
 module.exports = app;
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
-const routes = require("./routes/index.js");
+
 const cors = require("cors");
 
 require('./db/db.js');
