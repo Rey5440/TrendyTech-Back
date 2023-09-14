@@ -1,5 +1,5 @@
 const { User } = require('../../db/db.js')
-// const {generateToken} = require('../../helpers/generateToken.js')
+const {generateToken} = require('../../helpers/generateToken.js')
 
 
 const createUser = async (name, email, password) => {
@@ -12,8 +12,15 @@ const createUser = async (name, email, password) => {
         name,
         email,
         password,
-        //token: generateToken()
+        token: generateToken()
     });
+
+    //Email de confirmación, todovia no utilizado.
+    // emailRegister({
+    //     email: user.email,
+    //     name: user.name,
+    //     token: user.token,
+    //   });
 
     return user;
 };
