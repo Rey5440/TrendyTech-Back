@@ -1,3 +1,4 @@
+
 const {filterProducts} = require('../../handlers/products/filterProductsHandler');
 
 const filter = async (req, res) => {
@@ -27,13 +28,19 @@ module.exports = {
 };
 
 
+
 /*-----------------------------------------------------------------
   Filtrado por marca: http://localhost:3004/products/filter?brand=11 
 -----------------------------------------------------------------*/
 
+/* 
+  Filtrado por color: http://localhost:3004/products/filter?color=11 
+*/
+
 /* -----------------------------------------------------------------
   Filtrado por color: http://localhost:3004/products/filter?color=11 
 -----------------------------------------------------------------*/
+
 
 /*-----------------------------------------------------------------
   Filtrado por marca y color: http://localhost:3004/products/filter?brand=11&color=16 
@@ -46,17 +53,6 @@ module.exports = {
 /*-----------------------------------------------------------------
   Filtrado por precio: http://localhost:3004/products/filter?minPrice=8500&maxPrice=90000
 -----------------------------------------------------------------*/
-
-
-
-
-
-
-
-
-
-
-
 
 
 // const filterProducts = async (req, res) => {
@@ -107,4 +103,5 @@ module.exports = {
 // module.exports = {
 //   filterProducts,
 // };
+
 

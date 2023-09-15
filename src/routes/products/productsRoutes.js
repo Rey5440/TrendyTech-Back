@@ -6,7 +6,6 @@ const {getAllOrByNameProducts, getProductByIdHandler} = require('../../handlers/
 
 const {filter} = require('../../controllers/productsControllers/filterProducts')
 
-
 router.get("/", getAllOrByNameProducts);
 router.get('/name?', getAllOrByNameProducts)
 router.get("/:id", getProductByIdHandler)
