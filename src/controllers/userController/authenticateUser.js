@@ -27,6 +27,14 @@ const authenticateUser = async ( email, password ) => {
     }
 }
 
+const profile = async (req, res) => {
+    // console.log('desde perfil')
+    const { user } = req;
+  
+    res.json(user);
+  };
+
 module.exports = {
-    authenticateUser
+    authenticateUser,
+    profile
 }
