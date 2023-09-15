@@ -19,4 +19,18 @@ const getDBinfo = async () => {
     return DB
 }
 
-module.exports = { searchProductsByName, getDBinfo }
+const getProductById = async (id) => {
+    try {
+        const productId = await Product.findOne({ where: { id }});
+        
+        if (!productId) {
+            throw new Error(`No product was found with the ID: ${id}`);
+        }
+
+        return productId
+    } catch (error) {
+        throw new Error(error.message)
+    }
+}
+
+module.exports = { searchProductsByName, getDBinfo, getProductById }
