@@ -1,45 +1,26 @@
-// handlers/products/filterProductsHandler.js
-const { Op } = require('sequelize');
-const { Product, Brand, Color, TypeProduct } = require('../../db/db');
+const { filterProducts } = require('../../controllers/productsControllers/filterProducts');
 
-const filterProducts = async ({ brand, minPrice, maxPrice, color, type }) => {
-  const requiredFiltering = {};
-
-  if (brand) requiredFiltering.brandId = brand;
-  if (color) requiredFiltering.colorId = color;
-  if (type) requiredFiltering.typeId = type;
-
-  if (minPrice && maxPrice) {
-    requiredFiltering.price = {
-      [Op.between]: [parseInt(minPrice), parseInt(maxPrice)],
-    };
+const productsHandler = async (req, res) => {
+  try {
+    const { brand, minPrice, maxPrice, color, type } = req.query;
+    const products = await filterProducts({ brand, minPrice, maxPrice, color, type });
+    
+    if (products.length > 0) {
+      return res.status(200).json(products);
+    } else {
+      return res.json('No hay productos disponibles con esos requisitos, prueba ampliar tus parametros de búsqueda');
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Error al obtener los productos.' });
   }
-
-  const products = await Product.findAll({
-    where: requiredFiltering,
-    include: [
-      {
-        model: Brand,
-        attributes: ['name'],
-      },
-      {
-        model: Color,
-        attributes: ['name'],
-      },
-      {
-        model: TypeProduct,
-        attributes: ['name'],
-      },
-    ],
-    order: [['price', 'ASC']],
-  });
-
-  return products;
 };
 
 module.exports = {
-  filterProducts,
+  productsHandler,
 };
+
+
 
 
   
