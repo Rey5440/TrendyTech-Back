@@ -40,6 +40,9 @@ module.exports = {
   filterProducts,
 };
 
+/*
+  http://localhost:3004/products/filter?color=6&minPrice=8500&maxPrice=90000
+*/
 
 /*-----------------------------------------------------------------
   Filtrado por marca: http://localhost:3004/products/filter?brand=11 
@@ -117,3 +120,116 @@ module.exports = {
 // };
 
 
+
+
+// const filterProducts = async ({ brand, minPrice, maxPrice, color, type }) => {
+//   const requiredFiltering = {};
+
+//   if (brand) {
+//     const brandObj = await Brand.findOne({ where: { name: brand } });
+//     if (brandObj) {
+//       requiredFiltering.brandId = brandObj.id;
+//     }
+//   }
+
+//   if (color) {
+//     const colorObj = await Color.findOne({ where: { name: color } });
+//     if (colorObj) {
+//       requiredFiltering.colorId = colorObj.id;
+//     }
+//   }
+
+//   if (type) {
+//     const typeObj = await TypeProduct.findOne({ where: { name: type } });
+//     if (typeObj) {
+//       requiredFiltering.typeId = typeObj.id;
+//     }
+//   }
+
+//   if (minPrice && maxPrice) {
+//     requiredFiltering.price = {
+//       [Op.between]: [parseInt(minPrice), parseInt(maxPrice)],
+//     };
+//   }
+
+//   const products = await Product.findAll({
+//     where: requiredFiltering,
+//     include: [
+//       {
+//         model: Brand,
+//         attributes: ['name'],
+//       },
+//       {
+//         model: Color,
+//         attributes: ['name'],
+//       },
+//       {
+//         model: TypeProduct,
+//         attributes: ['name'],
+//       },
+//     ],
+//     order: [['price', 'ASC']],
+//   });
+
+//   return products;
+// };
+
+// module.exports = {
+//   filterProducts,
+// };
+
+// const filterProducts = async ({ brand, minPrice, maxPrice, color, type }) => {
+//   const requiredFiltering = {};
+
+//   if (brand) {
+//     const brandObjs = await Brand.findAll({ where: { name: brand } });
+//     if (brandObjs.length > 0) {
+//       requiredFiltering.brandId = brandObjs.map((brandObj) => brandObj.id);
+//     }
+//   }
+
+//   if (color) {
+//     const colorObjs = await Color.findAll({ where: { name: color } });
+//     if (colorObjs.length > 0) {
+//       requiredFiltering.colorId = colorObjs.map((colorObj) => colorObj.id);
+//     }
+//   }
+
+//   if (type) {
+//     const typeObjs = await TypeProduct.findAll({ where: { name: type } });
+//     if (typeObjs.length > 0) {
+//       requiredFiltering.typeId = typeObjs.map((typeObj) => typeObj.id);
+//     }
+//   }
+
+//   if (minPrice && maxPrice) {
+//     requiredFiltering.price = {
+//       [Op.between]: [parseInt(minPrice), parseInt(maxPrice)],
+//     };
+//   }
+
+//   const products = await Product.findAll({
+//     where: requiredFiltering,
+//     include: [
+//       {
+//         model: Brand,
+//         attributes: ['name'],
+//       },
+//       {
+//         model: Color,
+//         attributes: ['name'],
+//       },
+//       {
+//         model: TypeProduct,
+//         attributes: ['name'],
+//       },
+//     ],
+//     order: [['price', 'ASC']],
+//   });
+
+//   return products;
+// };
+
+// module.exports = {
+//   filterProducts,
+// };
