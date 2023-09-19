@@ -3,7 +3,6 @@ const { Brand } = require("../../db/db");
 const getAllBrands = async () => {
     try {
         const brands = await Brand.findAll();
-        console.log(brands)
         return brands;
     } catch (error) {
         console.error("Error al obtener todas las marcas:", error);

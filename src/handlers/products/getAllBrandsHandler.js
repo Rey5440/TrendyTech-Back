@@ -7,7 +7,7 @@ const getAllBrands = require("../../controllers/brandsControllers/getAllBrands")
       const brands = await getAllBrands();
       res.status(200).json(brands)
     } catch (error) {
-      res.status(400).json( { error: 'hola calenius'})
+      res.status(400).json( { error: error.message})
     }
   }
   
