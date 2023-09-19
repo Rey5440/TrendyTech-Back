@@ -1,11 +1,11 @@
 
 const { createUser } = require("../../controllers/userController/createUser")
 
-const createUserHandler = async (req, res ) => {
+const createUserHandler = async (req, res) => {
     try {
-        const {name, email, password } = req.body; 
+        const { name, email, password } = req.body;
         const user = await createUser(name, email, password);
-        res.status(200).json({msg: "User created successfully", user});
+        res.status(200).json({ msg: "User created successfully", user });
     } catch (error) {
         if (error.message === 'The email is already in use') {
             res.status(409).json({ error: 'The email is already in use' });

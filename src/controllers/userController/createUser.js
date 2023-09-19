@@ -3,7 +3,9 @@ const {generateToken} = require('../../helpers/generateToken.js')
 
 
 const createUser = async (name, email, password) => {
+
     const existingUser = await User.findOne({ where: { email } });
+
     if (existingUser) {
         throw new Error('The email is already in use');
     }
@@ -12,8 +14,16 @@ const createUser = async (name, email, password) => {
         name,
         email,
         password,
+        confirmated: true,
         token: generateToken()
     });
+
+    //Email de confirmación, todovia no utilizado.
+    // emailRegister({
+    //     email: user.email,
+    //     name: user.name,
+    //     token: user.token,
+    //   });
 
     return user;
 };
