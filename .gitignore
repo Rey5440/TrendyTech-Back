@@ -6,7 +6,10 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+/node_modules
+
 #package-lock.json
+
 package-lock.json
 
 # Dependency directories
