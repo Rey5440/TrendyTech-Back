@@ -15,7 +15,7 @@ const filter = async (req, res) => {
     if (products.length > 0) {
       return res.status(200).json(products);
     } else {
-      return res.json('No hay productos disponibles con esos requisitos, prueba a ampliar tus parámetros de búsqueda');
+      return res.status(404).json('No hay productos disponibles con esos requisitos, prueba a ampliar tus parámetros de búsqueda');
     }
   } catch (error) {
     console.error(error);
