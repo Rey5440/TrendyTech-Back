@@ -9,8 +9,11 @@ const getAllTypesHandler = require("../../handlers/products/getAllTypesHandlers"
 
 const {productsHandler} = require('../../handlers/products/filterProductsHandler')
 
+// const {filterProducts} = require('../../controllers/productsControllers/filterProducts')
+
 router.get("/", getAllOrByNameProducts);
 router.get('/name?', getAllOrByNameProducts)
+// router.get('/filter?', filterProducts)
 router.get('/filter?', productsHandler)
 
 router.get("/brands", getAllBrandsHandler)

@@ -26,15 +26,15 @@ module.exports = (sequelize) => {
     },
     confirmated: {
       type: DataTypes.BOOLEAN,
-      allowNull: true,
+      defaultValue: false
     },
     isDeleted: {
       type: DataTypes.BOOLEAN,
+      defaultValue: false,
       allowNull: true,
     },
     token: {
       type: DataTypes.STRING,
-      allowNull: true,
     }
   }, {
     timestamps: false
@@ -54,6 +54,21 @@ module.exports = (sequelize) => {
       user.password = await bcrypt.hash(user.password, salt);
     }
   });
+
+    // Antes de crear o actualizar un usuario, vamos a hashear su contraseña
+    User.beforeCreate(async (user) => {
+      if (user.changed('password')) {
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(user.password, salt);
+      }
+    });
+  
+    User.beforeUpdate(async (user) => {
+      if (user.changed('password')) {
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(user.password, salt);
+      }
+    });
 
   // Compararamos la contraseña proporcionada en "passwordForm" 
   // con la contraseña almacenada en el modelo User actual
