@@ -1,4 +1,6 @@
-const { Product, Brand, Color, TypeProduct } = require('../../db/db.js');
+
+const { Product, Color, Brand, TypeProduct } = require('../../db/db.js');
+
 const { Op } = require('sequelize');
 const objProducts = require('../../helpers/objProducts');
 const insertProduct = require('../../helpers/insertProducts.js');
@@ -52,6 +54,7 @@ const getDBinfo = async () => {
   
     return result;
   };
+
 
 const getProductById = async (id) => {
     try {

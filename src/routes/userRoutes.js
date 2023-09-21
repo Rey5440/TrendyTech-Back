@@ -13,12 +13,24 @@ const { confirmAccountHandler } = require('../handlers/userHandlers/cofirmAccoun
 const {profile} = require('../controllers/userController/authenticateUser')
 const { createAuth0UserHandler } = require('../handlers/userHandlers/createAuth0UserHandler')
 
+const {testToken} = require('../controllers/userController/testToken')
+
+const {resetPassword} = require('../controllers/userController/resetPassword')
+
+const {newPassword} = require('../controllers/userController/newPassword')
+
+// const {} = require('')
+
+
 
 // Creación - Autenticación - Confirmación (users)
 router.post("/", createUserHandler)
 router.post("/auth", createAuth0UserHandler)
 router.post("/login", authenticateUserHandler)
 router.post('/confirm/:token', confirmAccountHandler)
+
+router.post('/reset-password', resetPassword)
+router.route('/reset-password/:token').get(testToken).post(newPassword)
 
 router.get('/profile', checkAuth, profile)
 
