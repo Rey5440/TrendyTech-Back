@@ -1,11 +1,11 @@
-require("dotenv").config();
-const {MP_ACCESS_TOKEN} = process.env
+// imports
 const {Router}=require('express')
-const mercadopago = require('mercadopago')
+const postMercadoPago = require('../handlers/mercadoPago/postMercadoPagoHandlers')
 const mpRoutes = Router()
 
 
+// routes phatnames
+mpRoutes.post('/create_preference',postMercadoPago)
 
-mpRoutes.post('/create_preference',)
-
+// export
 module.exports = mpRoutes
