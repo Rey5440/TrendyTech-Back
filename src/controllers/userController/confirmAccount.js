@@ -4,7 +4,7 @@ const confirmAccount = async ( token ) => {
     const userConfirm = await User.findOne({ where: { token } } );
 
     if(!userConfirm){
-        throw new Error("Invalid token")
+        throw new Error("Token no válido")
     };
 
     try {
