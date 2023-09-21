@@ -8,19 +8,19 @@ const createUser = async (name, email, password) => {
     const existingUser = await User.findOne({ where: { email } });
 
     if (existingUser) {
-        throw new Error('The email is already in use');
+        throw new Error('Ya hay un registro con este email');
     }
 
     const user = await User.create({
         name,
         email,
         password,
-        confirmated: true,
+
         token: generateToken()
     });
 
     //Email de confirmación, todovia no utilizado.
-    emailRegister({
+    emailRegister({ 
         email: user.email,
         name: user.name,
         token: user.token,

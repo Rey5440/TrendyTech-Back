@@ -15,6 +15,7 @@ module.exports = (sequelize) => {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true
     },
     password: {
       type: DataTypes.STRING,
@@ -31,28 +32,13 @@ module.exports = (sequelize) => {
     isDeleted: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
-      allowNull: true,
+
     },
     token: {
       type: DataTypes.STRING,
     }
   }, {
     timestamps: false
-  });
-
-  // Antes de crear o actualizar un usuario, vamos a hashear su contraseña
-  User.beforeCreate(async (user) => {
-    if (user.changed('password')) {
-      const salt = await bcrypt.genSalt(10);
-      user.password = await bcrypt.hash(user.password, salt);
-    }
-  });
-
-  User.beforeUpdate(async (user) => {
-    if (user.changed('password')) {
-      const salt = await bcrypt.genSalt(10);
-      user.password = await bcrypt.hash(user.password, salt);
-    }
   });
 
     // Antes de crear o actualizar un usuario, vamos a hashear su contraseña

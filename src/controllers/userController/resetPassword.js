@@ -9,7 +9,7 @@ const resetPassword = async (req, res) => {
     const user = await User.findOne({ where: { email } });
   
     if (!user) {
-      const error = new Error("The user does not exist");
+      const error = new Error("Usuario inexistente");
       return res.status(404).json({ msg: error.message });
     }
   
