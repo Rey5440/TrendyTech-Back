@@ -7,6 +7,7 @@ mercadopago.configure({
 });
 
 const postMercadoPago =async (productos)=>{
+    console.log(productos)
     let preference={
         items:productos,
         back_urls:{
@@ -25,12 +26,7 @@ const postMercadoPago =async (productos)=>{
         
         auto_return: "approved",
     };
-    mercadopago.preferences.create(preference)
-		.then(function (response) { 
-            console.log(response)
-			return response.body.id
-		}).catch(function (error) {
-			return error;
-		});
+    const response= await mercadopago.preferences.create(preference)
+    return response.body.id
 }
 module.exports = postMercadoPago

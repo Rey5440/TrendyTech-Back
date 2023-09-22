@@ -9,7 +9,7 @@ const router = Router();
 
 router.use('/users', userRoutes)
 router.use('/products', productRoutes)
-router.use("/mercadoPago",mpRoutes)
+router.use("/checkout",mpRoutes)
 
 
 module.exports = router;
