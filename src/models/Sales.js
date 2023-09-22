@@ -7,13 +7,25 @@ module.exports = (sequelize) => {
       autoIncrement: true,
       primaryKey: true,
     },
+    mpId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    mpId: {
-      type: DataTypes.INTEGER,
+    userName: {
+      type: DataTypes.STRING,
       allowNull: false,
+    },
+    products: {
+      type: DataTypes.ARRAY(DataTypes.JSON),
+      allowNull: false,
+    },
+    total: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   });
 };
