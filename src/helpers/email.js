@@ -1,5 +1,6 @@
 const nodemailer = require("nodemailer");
 require("dotenv").config();
+const { google } = require("googleapis");
 
 const emailRegister = async (data) => {
     const { email, name, token } = data;
@@ -8,6 +9,7 @@ const emailRegister = async (data) => {
     const transport = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: process.env.EMAIL_PORT,
+      secure: true,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
