@@ -11,8 +11,8 @@ const postMercadoPago =async (productos)=>{
     let preference={
         items:productos,
         back_urls:{
-            success: "http://localhost:5173/",// caso exitoso ruta front (al mismo producto o a mis compras x ejemplo)
-            failure: "http://localhost:5173/",// caso fallido ruta front (un mensaje de error o similar)
+            success: "http://localhost:5173/paymentstatus",// caso exitoso ruta front (al mismo producto o a mis compras x ejemplo)
+            failure: "http://localhost:5173/paymentstatus",// caso fallido ruta front (un mensaje de error o similar)
             pending: "" // caso pendiente(en efectivo)
         },
         payment_methods: {
