@@ -18,6 +18,9 @@ const {testToken} = require('../controllers/userController/testToken')
 const {resetPassword} = require('../controllers/userController/resetPassword')
 
 const {newPassword} = require('../controllers/userController/newPassword')
+const getUserByEmailHandler = require('../handlers/userHandlers/getUserByEmailHandler')
+const editNameUserHandler = require('../handlers/userHandlers/editNameUserHandler')
+const editImageUserHandler = require('../handlers/userHandlers/editImageUserHandler')
 
 // const {} = require('')
 
@@ -28,7 +31,9 @@ router.post("/", createUserHandler)
 router.post("/auth", createAuth0UserHandler)
 router.post("/login", authenticateUserHandler)
 router.post('/confirm/:token', confirmAccountHandler)
-
+router.post('/emailuser', getUserByEmailHandler)
+router.put('/editimage', editImageUserHandler)
+router.put('/editname', editNameUserHandler)
 router.post('/reset-password', resetPassword)
 router.route('/reset-password/:token').get(testToken).post(newPassword)
 
