@@ -1,8 +1,8 @@
-const postMercadoPago = require('./postMercadoPago');
+const postMercadoPago = require('../../controllers/mercadoPagoController/postMercadoPago');
 const postMercadopagoHandlers =async (req, res) => {
-    const { name, price, quantity } = req.body;
+    const { productos } = req.body;
     try {
-        const response =await postMercadoPago(name, price, quantity);
+        const response =await postMercadoPago( productos );
         res.status(200).json(response);
     } catch (error) {
         res.status(400).json( { error: error.message})

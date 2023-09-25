@@ -1,11 +1,11 @@
 // imports
 const {Router}=require('express')
-const postMercadoPago = require('../handlers/mercadoPago/postMercadoPagoHandlers')
+const postMercadoPagoHandlers = require('../handlers/mercadoPago/postMercadoPagoHandlers')
 const mpRoutes = Router()
 
-
 // routes phatnames
-mpRoutes.post('/create_preference',postMercadoPago)
+mpRoutes.post('/create_preference',postMercadoPagoHandlers)
+
 
 // export
 module.exports = mpRoutes
