@@ -6,11 +6,11 @@ const authenticateUser = async ( email, password ) => {
     const user = await User.findOne({where: {email}})
 
     if(!user) {
-        throw new Error("The user does not exist");
+        throw new Error("Usuario inexistente");
     }
 
     if(!user.confirmated){
-        throw new Error("Your count is not confirmed")
+        throw new Error("Tu cuenta no esta confirmada")
     }
     
     const isPasswordCorrect = await user.checkPassword(password)
@@ -23,7 +23,7 @@ const authenticateUser = async ( email, password ) => {
             token: generateJWT(user.id),
         };
     } else {
-        throw new Error("Incorrect password");
+        throw new Error("Password incorrecto");
     }
 }
 

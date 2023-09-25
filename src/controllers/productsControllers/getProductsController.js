@@ -1,4 +1,6 @@
-const { Product } = require('../../db/db.js');
+
+const { Product, Color, Brand, TypeProduct } = require('../../db/db.js');
+
 const { Op } = require('sequelize');
 const objProducts = require('../../helpers/objProducts');
 const insertProduct = require('../../helpers/insertProducts.js');
@@ -12,12 +14,47 @@ const searchProductsByName = async (name) => {
 };
 
 const getDBinfo = async () => {
-    const DB = await Product.findAll();
-    if(!DB.length){
-        return insertProduct(objProducts)
-    };
-    return DB
-}
+    const DB = await Product.findAll({
+      include: [
+        {
+          model: Brand,
+          as: 'brand',
+          attributes: ['name'], 
+        },
+        {
+          model: Color,
+          as: 'color',
+          attributes: ['name'], 
+        },
+        {
+          model: TypeProduct,
+          as: 'typeProduct',
+          attributes: ['name'], 
+        },
+      ],
+    });
+  
+    if (!DB.length) {
+      return insertProduct(objProducts);
+    }
+    
+    // Mapear los resultados para obtener solo los datos relevantes
+    const result = DB.map(product => ({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      description: product.description,
+      stock: product.stock,
+      images: product.images,
+      isDeleted: product.isDeleted,
+      brand: product.brand.name, 
+      color: product.color.name, 
+      type: product.typeProduct.name,   
+    }));
+  
+    return result;
+  };
+
 
 const getProductById = async (id) => {
     try {
