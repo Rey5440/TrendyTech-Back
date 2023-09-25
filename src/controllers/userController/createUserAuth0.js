@@ -2,9 +2,6 @@ const { User } = require('../../db/db.js')
 
 const createAuth0User = async (auth0UserData) => {
 
-
-    console.log(auth0UserData);
-    
     const existingUser = await User.findOne({ where: { email: auth0UserData.email } })
 
     if (existingUser) {
@@ -14,7 +11,10 @@ const createAuth0User = async (auth0UserData) => {
     const user = await User.create({
         name: auth0UserData.name,
         email: auth0UserData.email,
-        password: auth0UserData.sub
+        password: auth0UserData.sub,
+        token: auth0UserData.sub,
+        image: auth0UserData.picture
+
     })
 
     return user;
