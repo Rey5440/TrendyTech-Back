@@ -8,7 +8,7 @@ const createAuth0User = async (auth0UserData) => {
         throw new Error("Usuario Auth0 ya existe en la Database");
     };
 
-    const user = await User.create({
+    const user = await User.create({ //find or create
         name: auth0UserData.name,
         email: auth0UserData.email,
         password: auth0UserData.sub,
