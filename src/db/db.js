@@ -4,7 +4,9 @@ const { DB_DEPLOY, DB_LOCAL } = process.env;
 const path = require("path");
 const fs = require("fs");
 
-const sequelize = new Sequelize(DB_LOCAL, {
+const sequelize = new Sequelize(DB_DEPLOY, {
+  host: "localhost",
+  dialect: "postgres",
   logging: false,
   native: false,
   dialectOptions: {
@@ -13,6 +15,7 @@ const sequelize = new Sequelize(DB_LOCAL, {
     }
   }
 });
+
 
 const basename = path.basename(__filename);
 
