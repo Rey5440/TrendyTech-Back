@@ -9,11 +9,6 @@ const sequelize = new Sequelize(DB_DEPLOY, {
   dialect: "postgres",
   logging: false,
   native: false,
-  dialectOptions: {
-    ssl: {
-      require: true
-    }
-  }
 });
 
 
