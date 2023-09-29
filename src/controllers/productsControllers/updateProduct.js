@@ -63,10 +63,10 @@ const updateProduct = async (updateData) => {
     const typeResult = await createType(type)
 
 
-    const actualización = await Product.update({ name, price, description, stock, brandId: brandResult.id, colorId: colorResult.id, typeId: typeResult.id }, { where: { id } });
+    const actualización = await Product.update({ name, price, description, stock, images, brandId: brandResult.id, colorId: colorResult.id, typeId: typeResult.id }, { where: { id } });
 
 
-    return { message: "Producto actualizado con éxito" };
+    return { message: "Producto actualizado con éxito", actualización };
 };
 
 module.exports = updateProduct;
