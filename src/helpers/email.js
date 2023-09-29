@@ -22,9 +22,9 @@ const emailRegister = async (data) => {
     //Informacion del email
   
     // A continuación, se define un objeto info que contiene la información del correo electrónico a enviar. El correo electrónico incluye un remitente, destinatario, asunto, texto plano y contenido HTML. Se utiliza el enlace ${process.env.FRONTEND_URL}/confirmar/${token} para generar un enlace de confirmación de cuenta en el contenido HTML del correo electrónico. El token se inserta en el enlace y se enviará al usuario para que pueda confirmar su cuenta haciendo clic en él.                <p>Hola: ${name}, confirma tu cuenta en Trendy Tech</p>
-                // <p>Tu cuenta ya esta casi lista, solo debes comprobarla haciendo click en el siguiente enlace</p>
+    // <p>Tu cuenta ya esta casi lista, solo debes comprobarla haciendo click en el siguiente enlace</p>
 
-                // <a href="${process.env.FRONTEND_URL}/confirm/${token}">Confirmar Cuenta</a>
+    // <a href="${process.env.FRONTEND_URL}/confirm/${token}">Confirmar Cuenta</a>
 
                 // <p>Si tu no reconoces este mail, por favor ignora este mensaje</p>
   
@@ -33,7 +33,8 @@ const emailRegister = async (data) => {
                 to: email,
                 subject: "Trendy Tech - Confirma tu cuenta",
                 text: "Confirma tu cuenta en Trendy-Tech",
-                html: `        
+                html: `       
+                <p>Hola: ${name}, confirma tu cuenta en Trendy Tech</p> 
                 <body style="word-spacing:normal;background-color:#F4F4F4;">
                 <div style="background-color:#F4F4F4;">
                   <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" bgcolor="#000000" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
@@ -148,7 +149,7 @@ const emailRegister = async (data) => {
                                       <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;">
                                         <tr>
                                           <td align="center" bgcolor="#fc6933" role="presentation" style="border:none;border-radius:10px;cursor:auto;mso-padding-alt:10px 25px;background:#fc6933;" valign="middle">
-                                            <a href="${process.env.FRONTEND_URL}/confirm/${token}" style="display:inline-block;background:#fc6933;color:#ffffff;font-family:Times New Roman, Helvetica, Arial, sans-serif;font-size:18px;font-weight:normal;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:10px;" target="_blank">
+                                            <a href="${process.env.FRONTEND_URL}/#/confirm/${token}" style="display:inline-block;background:#fc6933;color:#ffffff;font-family:Times New Roman, Helvetica, Arial, sans-serif;font-size:18px;font-weight:normal;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:10px;" target="_blank">
                                               <span style="color:#ffffff">Confirmar</span>
                                             </a>
                                           </td>
@@ -188,10 +189,14 @@ const emailRegister = async (data) => {
     const transport = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: process.env.EMAIL_PORT,
+      secure: true,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
+      tls: {
+        rejectUnauthorized: false
+      }
     });
   
     //Informacion del email
@@ -203,12 +208,6 @@ const emailRegister = async (data) => {
                 subject: "Trendy Tech - Recupera tu cuenta",
                 text: "Recupera tu cuenta en Trendy-Tech",
                 html: `<p>Hola: ${name}, recupera tu cuenta en Trendy Tech</p>
-            
-                <a href="${process.env.FRONTEND_URL}/new-password/${token}">Ingresa aqui para reestablecer tu password</a>
-  
-                <p>Si no solicitaste esta petición ignora este mensaje</p>
-
-
                 <body style="word-spacing:normal;background-color:#F4F4F4;">
                 <div style="background-color:#F4F4F4;">
                   <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" bgcolor="#000000" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
@@ -323,7 +322,7 @@ const emailRegister = async (data) => {
                                       <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;">
                                         <tr>
                                           <td align="center" bgcolor="#fc6933" role="presentation" style="border:none;border-radius:10px;cursor:auto;mso-padding-alt:10px 25px;background:#fc6933;" valign="middle">
-                                            <a href="${process.env.FRONTEND_URL}/new-password/${token}" style="display:inline-block;background:#fc6933;color:#ffffff;font-family:Times New Roman, Helvetica, Arial, sans-serif;font-size:18px;font-weight:normal;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:10px;" target="_blank">
+                                            <a href="${process.env.FRONTEND_URL}/#/new-password/${token}" style="display:inline-block;background:#fc6933;color:#ffffff;font-family:Times New Roman, Helvetica, Arial, sans-serif;font-size:18px;font-weight:normal;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:10px;" target="_blank">
                                               <span style="color:#ffffff">Recuperar Contraseña</span>
                                             </a>
                                           </td>
