@@ -11,8 +11,8 @@ const getAllUsers = async (req, res) => {
             res.status(400).json({message: "There are no active users"})
         } else {
             const users = allUsers.map(user => {
-                const { id, name, email, isAdmin, confirmated } = user;
-                return { id, name, email, isAdmin, confirmated };
+                const { id, name, email, isAdmin, confirmated, isDeleted } = user;
+                return { id, name, email, isAdmin, confirmated, isDeleted };
             });
             return res.json(users);
         }
