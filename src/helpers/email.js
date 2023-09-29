@@ -318,7 +318,7 @@ const emailRegister = async (data) => {
                                       <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;">
                                         <tr>
                                           <td align="center" bgcolor="#fc6933" role="presentation" style="border:none;border-radius:10px;cursor:auto;mso-padding-alt:10px 25px;background:#fc6933;" valign="middle">
-                                            <a href="${process.env.FRONTEND_URL}/new-password/${token}" style="display:inline-block;background:#fc6933;color:#ffffff;font-family:Times New Roman, Helvetica, Arial, sans-serif;font-size:18px;font-weight:normal;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:10px;" target="_blank">
+                                            <a href="${process.env.FRONTEND_URL}/#/new-password/${token}" style="display:inline-block;background:#fc6933;color:#ffffff;font-family:Times New Roman, Helvetica, Arial, sans-serif;font-size:18px;font-weight:normal;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:10px;" target="_blank">
                                               <span style="color:#ffffff">Recuperar Contraseña</span>
                                             </a>
                                           </td>
