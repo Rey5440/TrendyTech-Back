@@ -21,6 +21,7 @@ const {newPassword} = require('../controllers/userController/newPassword')
 const getUserByEmailHandler = require('../handlers/userHandlers/getUserByEmailHandler')
 const editNameUserHandler = require('../handlers/userHandlers/editNameUserHandler')
 const editImageUserHandler = require('../handlers/userHandlers/editImageUserHandler')
+const deleteUserHandler = require('../handlers/userHandlers/deleteUserHandler')
 
 // const {} = require('')
 
@@ -34,6 +35,7 @@ router.post('/confirm/:token', confirmAccountHandler)
 router.post('/emailuser', getUserByEmailHandler)
 router.put('/editimage', editImageUserHandler)
 router.put('/editname', editNameUserHandler)
+router.put('/delete', deleteUserHandler)
 router.post('/reset-password', resetPassword)
 router.route('/reset-password/:token').get(testToken).post(newPassword)
 

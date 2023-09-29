@@ -6,7 +6,6 @@ const updateProductHandler = async (req, res) => {
 
   try {
     const result = await updateProduct(updatedData);
-    console.log(result);
 
     if (result.validationErrors) {
 
