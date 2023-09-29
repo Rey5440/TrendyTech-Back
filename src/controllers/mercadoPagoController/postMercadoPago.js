@@ -1,18 +1,16 @@
 require("dotenv").config();
-const {MP_ACCESS_TOKEN} = process.env
+const {MP_ACCESS_TOKEN,FRONTEND_URL} = process.env
 const mercadopago = require('mercadopago')
-
 mercadopago.configure({
     access_token: MP_ACCESS_TOKEN,
 });
 
 const postMercadoPago =async (productos)=>{
-    console.log(productos)
     let preference={
         items:productos,
         back_urls:{
-            success: "http://localhost:5173/paymentstatus",// caso exitoso ruta front (al mismo producto o a mis compras x ejemplo)
-            failure: "http://localhost:5173/paymentstatus",// caso fallido ruta front (un mensaje de error o similar)
+            success: FRONTEND_URL+"paymentstatus",// caso exitoso ruta front (al mismo producto o a mis compras x ejemplo)
+            failure: FRONTEND_URL+"paymentstatus",// caso fallido ruta front (un mensaje de error o similar)
             pending: "" // caso pendiente(en efectivo)
         },
         payment_methods: {
