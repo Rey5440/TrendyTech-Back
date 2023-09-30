@@ -1,6 +1,8 @@
-const { User } = require("../../db/db.js");
-const { generateToken } = require("../../helpers/generateToken.js");
-const { emailRegister } = require("../../helpers/email");
+
+const { User } = require('../../db/db.js')
+const { generateToken } = require('../../helpers/generateToken.js')
+const { emailRegister } = require('../../helpers/email')
+
 
 const createUser = async (name, email, password, isAdmin) => {
   const existingUser = await User.findOne({ where: { email } });

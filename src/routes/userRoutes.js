@@ -22,6 +22,7 @@ const getUserByEmailHandler = require('../handlers/userHandlers/getUserByEmailHa
 const editNameUserHandler = require('../handlers/userHandlers/editNameUserHandler')
 const editImageUserHandler = require('../handlers/userHandlers/editImageUserHandler')
 const deleteUserHandler = require('../handlers/userHandlers/deleteUserHandler')
+const { getUserByToken } = require('../handlers/userHandlers/getUserByTokenHandler')
 
 // const {} = require('')
 
@@ -43,7 +44,9 @@ router.get('/profile', checkAuth, profile)
 
 router.get("/", getAllUsers)
 router.get("/name?", getUserByName)
-router.get("/:id", getUserById )
+router.get("/token/:token", getUserByToken);
+router.get("/:id", getUserById)
+
 
 
 

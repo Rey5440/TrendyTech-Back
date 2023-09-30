@@ -4,6 +4,7 @@ const { createUser } = require("../../controllers/userController/createUser")
 const createUserHandler = async (req, res) => {
     console.log('hola robertito')
     try {
+
         const { name, email, password, isAdmin } = req.body;
         const user = await createUser(name, email, password, isAdmin);
         console.log('hola calenius')
