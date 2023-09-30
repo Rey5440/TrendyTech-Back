@@ -8,6 +8,10 @@ lerna-debug.log*
 
 /node_modules
 
+.env
+
+.env.test
+
 #package-lock.json
 
 package-lock.json
