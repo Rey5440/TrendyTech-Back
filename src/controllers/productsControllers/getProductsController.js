@@ -56,15 +56,48 @@ const getDBinfo = async () => {
   };
 
 
-const getProductById = async (id) => {
+  const getProductById = async (id) => {
     try {
-        const productId = await Product.findOne({ where: { id }});
+        const productId = await Product.findOne({ where: { id },
+          
+          include: [
+            {
+              model: Brand,
+              as: 'brand',
+              attributes: ['name'], 
+            },
+            {
+              model: Color,
+              as: 'color',
+              attributes: ['name'], 
+            },
+            {
+              model: TypeProduct,
+              as: 'typeProduct',
+              attributes: ['name'], 
+            },
+          ]    
+        
+        });
         
         if (!productId) {
             throw new Error(`No product was found with the ID: ${id}`);
         }
 
-        return productId
+        const product = {
+          id: productId.id,
+          name: productId.name,
+          price: productId.price,
+          description: productId.description,
+          stock: productId.stock,
+          images: productId.images,
+          isDeleted: productId.isDeleted,
+          brand: productId.brand.name, 
+          color: productId.color.name, 
+          type: productId.typeProduct.name,   
+        }
+
+        return product
     } catch (error) {
         throw new Error(error.message)
     }
