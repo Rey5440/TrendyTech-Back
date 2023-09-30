@@ -1,7 +1,7 @@
 const {Order}= require('../../db/db.js')
 
-const getByIdOrder = async (idUser) => {
-    const response = await Order.findByPk(idUser)
+const getByIdOrder = async (id) => {
+    const response = await Order.findByPk(id)
     if(!response)throw Error('No existe la orden con esta id')
     return response;
 }

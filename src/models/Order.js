@@ -21,7 +21,7 @@ module.exports = (sequelize) => {
         defaultValue:'null'
     },
     productos:{
-        type: DataTypes.ARRAY(DataTypes.STRING),
+        type: DataTypes.ARRAY(DataTypes.JSON),
         allowNull: false,
     }
     

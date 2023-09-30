@@ -6,6 +6,7 @@ const orderRoutes=Router()
 
 orderRoutes.get('/',getAllOrdersHandler)
 orderRoutes.get('/:id',getByIdOrderHandler)
+orderRoutes.get('/user/:id',getByIdUserHandler)
 orderRoutes.post('/create',postOrderHandler)
 orderRoutes.put('/update/:id',putOrderHandler)
 
