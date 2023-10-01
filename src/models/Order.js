@@ -7,10 +7,6 @@ module.exports = (sequelize) => {
       autoIncrement: true,
       primaryKey: true,
     },
-    iduser:{
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
     status:{
         type: DataTypes.BOOLEAN,
         defaultValue:false
@@ -24,13 +20,8 @@ module.exports = (sequelize) => {
         allowNull: true,
         defaultValue:'null'
     },
-    idpreference:{
-        type: DataTypes.STRING,
-        allowNull: true,
-
-    },
-    productos:{
-        type: DataTypes.ARRAY(DataTypes.STRING),
+    products:{
+        type: DataTypes.ARRAY(DataTypes.JSON),
         allowNull: false,
     }
     
