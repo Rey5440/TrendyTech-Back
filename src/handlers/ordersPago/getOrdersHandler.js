@@ -32,5 +32,6 @@ const getByTokenUserHandler = async (req, res) => {
 
 module.exports = {
     getAllOrdersHandler,
-    getByIdOrderHandler
+    getByIdOrderHandler,
+    getByTokenUserHandler
 }
