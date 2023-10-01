@@ -800,20 +800,6 @@ const objProducts = [
     type: "Mouse",
   },
   {
-    name: "Mouse Gamer Trust Heron Rgb Gxt-170 Sensor Óptico",
-    price: 74730,
-    description: 'Height of main product (in mm) 128 mm, Formfactor standard, Width of main product (in mm) 74 mm, Depth of main product (in mm) 41 mm, Total weight 135 g, Ergonomic design no',
-    stock: 40,
-    images: [
-      'https://res.cloudinary.com/dntrwijx5/image/upload/v1695830858/imagenes/hllnquuzzos0ojtiir2n.webp',
-      'https://res.cloudinary.com/dntrwijx5/image/upload/v1695830858/imagenes/fgwqrh0f3syjosdgcmf3.webp',
-      'https://res.cloudinary.com/dntrwijx5/image/upload/v1695830858/imagenes/bx5lmejpjapapyafrnw8.webp'
-    ],
-    brand: "Trust",
-    color: "Negro",
-    type: "Mouse",
-  },
-  {
     name: "Mouse Gamer Ergonomico Trust Celox Gxt 165 Rgb 10000dpi",
     price: 61440,
     description: 'Height of main product (in mm) 128 mm, Formfactor standard, Width of main product (in mm) 74 mm, Depth of main product (in mm) 41 mm, Total weight 135 g, Ergonomic design no',
