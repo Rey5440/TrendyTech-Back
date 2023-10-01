@@ -8,7 +8,7 @@ const postOrders = async (products,token,total) => {
         total,
     })
     newOrder.addUser(user)
-    User.addOrder(newOrder)
+    user.addOrder(newOrder)
     if(!newOrder)throw Error('Hubo un error al crear la orden')
     return newOrder
 }

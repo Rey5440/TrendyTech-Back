@@ -22,8 +22,8 @@ const getByIdOrderHandler = async (req, res) => {
 }
 const getByTokenUserHandler = async (req, res) => {
     try {
-        const { id } = req.params;
-        const order = await getByTokenUserOrder(id);
+        const { token } = req.params;
+        const order = await getByTokenUserOrder(token);
         res.status(200).json(order);
     } catch (error) {
         res.status(400).json( { error: error.message } )
@@ -32,5 +32,6 @@ const getByTokenUserHandler = async (req, res) => {
 
 module.exports = {
     getAllOrdersHandler,
-    getByIdOrderHandler
+    getByIdOrderHandler,
+    getByTokenUserHandler
 }

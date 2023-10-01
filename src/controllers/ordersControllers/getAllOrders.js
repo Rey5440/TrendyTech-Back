@@ -1,4 +1,4 @@
-const {Order}= require('../../db/db.js')
+const {Order,User}= require('../../db/db.js')
 
 const getAllOrders = async () => {
     const response = await Order.findAll({include:{model:User}})

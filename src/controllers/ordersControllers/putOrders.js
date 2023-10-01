@@ -14,12 +14,12 @@ const putOrders = async (id,status,ticket) => {
       let stockErrors=["No hay stock suficiente en el producto: "];
       updateOrder.products.forEach(async (prod)=>{
         const updateProduct= await Product.findByPk(prod.id)
-        if (updateProduct.stock>=prod.quantity){
-          updateProduct.stock-=prod.quantity
+        if (updateProduct.stock>=prod.stock){
+          updateProduct.stock-=prod.stock
           await updateProduct.save()
         }
         else{
-          stockErrors.push(prod.title); 
+          stockErrors.push(prod.name); 
         }
       })
       if (stockErrors.length>1){
