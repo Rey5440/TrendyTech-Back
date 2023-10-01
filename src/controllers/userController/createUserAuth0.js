@@ -14,7 +14,7 @@ const createAuth0User = async (auth0UserData) => {
       token: auth0UserData.token,
       image: auth0UserData.picture,
     });
-    return user;
+    return user.dataValues;
   }
 };
 

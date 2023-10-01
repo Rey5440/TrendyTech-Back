@@ -1,8 +1,8 @@
 const {Order,Product}= require('../../db/db.js')
 
-const putOrders = async (id,status,ticket) => {
-  
-  const updateOrder= await Order.findByPk(id);
+const putOrders = async (token,status,ticket) => {
+  const {id}= await User.findOne({where:{token}})
+  const updateOrder= await Order.findOne({where:{userId:id}});
       if (!updateOrder) {
         throw new Error("La orden o carrito no pudo actualizarse.");
       }
@@ -14,16 +14,17 @@ const putOrders = async (id,status,ticket) => {
       let stockErrors=["No hay stock suficiente en el producto: "];
       updateOrder.products.forEach(async (prod)=>{
         const updateProduct= await Product.findByPk(prod.id)
-        if (updateProduct.stock>=prod.quantity){
-          updateProduct.stock-=prod.quantity
+        if (updateProduct.stock>=prod.stock){
+          updateProduct.stock-=prod.stock
           await updateProduct.save()
         }
         else{
-          stockErrors.push(prod.title); 
+          stockErrors.push(prod.name); 
         }
       })
       if (stockErrors.length>1){
-        throw new Error(stockErrors.join())
+        stockErrors.join()
+        throw new Error(stockErrors)
       }
 
       return updateOrder  

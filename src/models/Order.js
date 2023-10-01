@@ -20,8 +20,8 @@ module.exports = (sequelize) => {
         allowNull: true,
         defaultValue:'null'
     },
-    productos:{
-        type: DataTypes.ARRAY(DataTypes.STRING),
+    products:{
+        type: DataTypes.ARRAY(DataTypes.JSON),
         allowNull: false,
     }
     

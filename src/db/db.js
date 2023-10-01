@@ -48,9 +48,9 @@ Product.belongsTo(Color, {foreignKey: 'colorId'});
 
 Product.belongsTo(TypeProduct, {foreignKey: 'typeId'});
 
-Product.belongsToMany(Order, {through:'ordersProduct'}, {foreignKey: 'productsId'});
+// Product.belongsToMany(Order, {through:'ordersProduct'}, {foreignKey: 'productsId'});
 
-Order.belongsToMany(Product, {through:'ordersProduct'}, {foreignKey: 'ordersId'});
+// Order.belongsToMany(Product, {through:'ordersProduct'}, {foreignKey: 'ordersId'});
 
 User.hasMany(Order, {foreignKey: 'userId'});
 Order.belongsTo(User, {foreignKey: 'userId'});
