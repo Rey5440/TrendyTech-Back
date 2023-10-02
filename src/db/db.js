@@ -9,13 +9,7 @@ const sequelize = new Sequelize(DB_DEPLOY, {
   dialect: "postgres",
   logging: false,
   native: false,
-  dialectOptions: {
-    ssl: {
-      require: true
-    }
-  }
 });
-
 
 const basename = path.basename(__filename);
 
@@ -42,23 +36,27 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { User, TypeProduct, Product, Brand, Color, Sales} = sequelize.models;
-
+const { User, TypeProduct, Product, Brand, Color, Sales, Favorite } =
+  sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-Product.belongsTo(Brand, {foreignKey: 'brandId'});
+Product.belongsTo(Brand, { foreignKey: "brandId" });
 
-Product.belongsTo(Color, {foreignKey: 'colorId'});
+Product.belongsTo(Color, { foreignKey: "colorId" });
 
-Product.belongsTo(TypeProduct, {foreignKey: 'typeId'});
+Product.belongsTo(TypeProduct, { foreignKey: "typeId" });
 
-Product.hasMany(Sales, {foreignKey: 'productsId'});
+Product.hasMany(Sales, { foreignKey: "productsId" });
 
-User.hasOne(Sales, {foreignKey: 'userId'});
+User.hasOne(Sales, { foreignKey: "userId" });
+
+//User.belongsToMany(Product, { through: Favorite, foreignKey: "userId" });
+//User.belongsToMany(Favorite, { through: Favorite, foreignKey: "favoriteId" });
+User.belongsTo(Favorite, { foreignKey: "favoriteId" });
+Favorite.belongsTo(User, { foreignKey: "userId" });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');
 };
-
