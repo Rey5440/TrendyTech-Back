@@ -1,6 +1,6 @@
 require("dotenv").config();
 const { Sequelize } = require("sequelize");
-const { DB_DEPLOY, DB_LOCAL } = process.env;
+const { DB_DEPLOY } = process.env;
 const path = require("path");
 const fs = require("fs");
 
@@ -48,9 +48,9 @@ Product.belongsTo(Color, {foreignKey: 'colorId'});
 
 Product.belongsTo(TypeProduct, {foreignKey: 'typeId'});
 
-Product.belongsToMany(Order, {through:'ordersProduct'}, {foreignKey: 'productsId'});
+// Product.belongsToMany(Order, {through:'ordersProduct'}, {foreignKey: 'productsId'});
 
-Order.belongsToMany(Product, {through:'ordersProduct'}, {foreignKey: 'ordersId'});
+// Order.belongsToMany(Product, {through:'ordersProduct'}, {foreignKey: 'ordersId'});
 
 User.hasMany(Order, {foreignKey: 'userId'});
 Order.belongsTo(User, {foreignKey: 'userId'});
