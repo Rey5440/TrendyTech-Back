@@ -1,7 +1,6 @@
 const { Reviews } = require("../../db/db");
 
 const addReviewController = async (userId, productId, textReview, stars) => {
-
     try {
         const [review, created] = await Reviews.findOrCreate({
             where: {
@@ -18,7 +17,9 @@ const addReviewController = async (userId, productId, textReview, stars) => {
         if (!created && review) {
             await review.update({ 
                 text: textReview,
-                punctuation: stars
+                punctuation: stars,
+                isVisible: false,
+                
             }); // si existia le cambia el text
         }
 
