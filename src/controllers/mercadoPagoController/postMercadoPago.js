@@ -9,8 +9,8 @@ const postMercadoPago = async (productos) => {
   let preference = {
     items: productos,
     back_urls: {
-      success: FRONTEND_URL + "/#/paymentstatus", // caso exitoso ruta front (al mismo producto o a mis compras x ejemplo)
-      failure: FRONTEND_URL + "/#/paymentstatus", // caso fallido ruta front (un mensaje de error o similar)
+      success: FRONTEND_URL + "/#/shopping-cart", // caso exitoso ruta front (al mismo producto o a mis compras x ejemplo)
+      failure: FRONTEND_URL + "/#/shopping-cart", // caso fallido ruta front (un mensaje de error o similar)
       pending: "", // caso pendiente(en efectivo)
     },
     payment_methods: {

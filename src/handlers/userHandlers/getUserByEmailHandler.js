@@ -1,9 +1,9 @@
 const getUserByEmailController = require("../../controllers/userController/getUserByEmailController");
 
 const getUserByEmailHandler = async (req, res) => {
-    const { email, name } = req.body;
+    const { email } = req.params;
     try {
-        const user = await getUserByEmailController(email, name);
+        const user = await getUserByEmailController(email);
         res.status(200).json(user)
 
     } catch (error) {
