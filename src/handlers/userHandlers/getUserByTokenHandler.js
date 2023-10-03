@@ -10,7 +10,8 @@ const getUserByToken = async (req, res) => {
         .status(404)
         .json({ message: `User not found with token: ${token}` });
         }
-        const user = userToken.dataValues;
+    const user = userToken.dataValues;
+   
     return res.status(200).json(user);
   } catch (error) {
     return res.status(500).json({ message: error.message });
