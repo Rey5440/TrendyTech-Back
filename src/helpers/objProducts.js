@@ -248,7 +248,7 @@ const objProducts = [
     type: "Auriculares",
   },
   {
-    name: "Auriculares inalámbricos con noise cancelling Sony WF-C700N",
+    name: "Auriculares inalámbricos con noise cancelling Sony WF-C700N V",
     price: 109999,
     description:
       "Los audífonos con Noise Cancelling WF-C700N ofrecen sonido cristalino, comodidad y una batería de larga duración para el uso diario. Controla el sonido ambiente con 20 niveles o permite que el control de sonido adaptativo lo haga automáticamente. Ahora es más fácil que nunca sumergirte en la música.",
@@ -583,7 +583,7 @@ const objProducts = [
     type: "Mouse",
   },
   {
-    name: "Mouse gamer inalámbrico recargable Razer Viper Ultimate with charging dock black",
+    name: "Mouse gamer inalámbrico recargable Razer Viper Ultimate",
     price: 99550,
     description:
       "Desde 2005 Razer es la marca líder de estilo de vida para jugadores. Ha diseñado y construido el ecosistema de hardware, software y servicios más grande del mundo. La ubicación de cada botón y curva de los mouses Razer se crearon para adaptarse perfectamente a tu mano. Gracias a estos dispositivos, conseguirás una experiencia de juego cómoda y placentera.",
@@ -687,20 +687,7 @@ const objProducts = [
     color: "Negro",
     type: "Mouse",
   },
-  {
-    name: "Mouse inalámbrico Logitech M280 negro",
-    price: 13399,
-    description: "Logitech diseña productos y experiencias que ocupan un lugar cotidiano en la vida de las personas, poniendo foco en la innovación y la calidad. Su objetivo es crear momentos verdaderamente únicos y significativos para sus usuarios. Los mouses Logitech se adaptan a la forma de tu mano para proporcionarte horas de comodidad. Sin necesidad de mover el brazo para deslizar el cursor, tu mano se fatigará menos. Son ideales para cualquier espacio de trabajo y quienes tienen la mesa llena de diversos objetos.",
-    stock: 9,
-    images: [
-      'https://res.cloudinary.com/dntrwijx5/image/upload/v1695823364/imagenes/ilyhbqwv1pkcxowdu6uh.webp',
-      'https://res.cloudinary.com/dntrwijx5/image/upload/v1695823364/imagenes/obae91q2dqkouflczg3v.webp',
-      'https://res.cloudinary.com/dntrwijx5/image/upload/v1695823364/imagenes/x7kehvuvwsaydsqjeyha.webp'
-    ],
-    brand: "Logitech",
-    color: "Negro",
-    type: "Mouse",
-  },
+  
 ];
 
 module.exports = objProducts;
