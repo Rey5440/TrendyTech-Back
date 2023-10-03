@@ -10,6 +10,6 @@ const orderRoutes = Router();
 orderRoutes.get("/", getAllOrdersHandler);
 orderRoutes.get("/:id", getByIdOrderHandler);
 orderRoutes.post("/create", postOrderHandler);
-orderRoutes.put("/update/:id", putOrderHandler);
+orderRoutes.put("/update/:userId", putOrderHandler);
 
 module.exports = orderRoutes;

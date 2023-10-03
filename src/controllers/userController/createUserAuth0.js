@@ -12,7 +12,7 @@ const createAuth0User = async (auth0UserData) => {
       password: auth0UserData.sub,
       token: auth0UserData.token,
       image: auth0UserData.picture,
-      confirmated: true
+      confirmated: true,
     });
     return user.dataValues;
   }
