@@ -8,26 +8,26 @@ const putOrders = async (userId, status, ticket) => {
       updateOrder.status = true;
       updateOrder.ticket = ticket;
     }
-  }
+    // control de stock
+    let stockErrors = ["No hay stock suficiente en el producto: "];
+    updateOrder.products.forEach(async (prod) => {
+      const updateProduct = await Product.findOne({ where: { id: prod.id } });
 
-  // control de stock
-  let stockErrors = ["No hay stock suficiente en el producto: "];
-  updateOrder.products.forEach(async (prod) => {
-    const updateProduct = await Product.findByPk(prod.id);
-
-    if (updateProduct.stock >= prod.quantity) {
-      updateProduct.stock -= prod.quantity;
-      prod.stock = updateProduct.stock;
-      await updateProduct.save();
-    } else {
-      console.log("error!");
-      stockErrors.push(prod.name);
+      if (updateProduct.stock >= prod.quantity) {
+        updateProduct.stock -= prod.quantity;
+        await updateProduct.save();
+        prod.stock = updateProduct.stock;
+      } else {
+        console.log("error!");
+        stockErrors.push(prod.name);
+      }
+    });
+    if (stockErrors.length > 1) {
+      stockErrors.join();
+      throw new Error(stockErrors);
     }
-  });
-  if (stockErrors.length > 1) {
-    stockErrors.join();
-    throw new Error(stockErrors);
   }
+
   await updateOrder.save();
   return updateOrder;
 };
