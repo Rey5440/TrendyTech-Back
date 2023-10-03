@@ -23,6 +23,7 @@ const editNameUserHandler = require('../handlers/userHandlers/editNameUserHandle
 const editImageUserHandler = require('../handlers/userHandlers/editImageUserHandler')
 const deleteUserHandler = require('../handlers/userHandlers/deleteUserHandler')
 const { getUserByToken } = require('../handlers/userHandlers/getUserByTokenHandler')
+const addReviewController = require('../controllers/userController/addReviewController')
 
 // const {} = require('')
 
@@ -34,6 +35,7 @@ router.post("/auth", createAuth0UserHandler)
 router.post("/login", authenticateUserHandler)
 router.post('/confirm/:token', confirmAccountHandler)
 router.post('/emailuser', getUserByEmailHandler)
+router.post('/review', addReviewController)
 router.put('/editimage', editImageUserHandler)
 router.put('/editname', editNameUserHandler)
 router.put('/delete', deleteUserHandler)
