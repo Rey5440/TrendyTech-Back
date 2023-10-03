@@ -1,9 +1,15 @@
 const {Order,User}= require('../../db/db.js')
 const {emailConfirmBuy} = require('../../helpers/email.js')
 
-const postOrders = async (products,iduser,total) => {
-    const user= await User.findByPk(iduser);
-    const { email, name } = req.params;
+
+// const postOrders = async (products,iduser,total) => {
+//     const user= await User.findByPk(iduser);
+//     const { email, name } = req.params;
+
+const postOrders = async (products,token,total) => {
+    const user= await User.findOne({where:{token}})
+    if(!user)throw Error('Usuario no encontrado')
+
     const newOrder = await Order.create({
         products,
         total,

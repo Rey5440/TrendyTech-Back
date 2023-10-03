@@ -25,6 +25,7 @@ const postMercadoPago =async (productos)=>{
         auto_return: "approved",
     };
     const response= await mercadopago.preferences.create(preference)
+    
     return response.body.id
 }
 module.exports = postMercadoPago

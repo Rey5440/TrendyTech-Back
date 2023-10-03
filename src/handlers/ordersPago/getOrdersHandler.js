@@ -1,6 +1,6 @@
 const getAllOrders  = require("../../controllers/ordersControllers/getAllOrders");
 const getByIdOrder = require("../../controllers/ordersControllers/getByIdOrder");
-
+const getByTokenUserOrder = require("../../controllers/ordersControllers/getByTokenUserOrder");
 
 
 const getAllOrdersHandler = async (req, res) => {
@@ -20,8 +20,18 @@ const getByIdOrderHandler = async (req, res) => {
         res.status(400).json( { error: error.message } )
     }
 }
+const getByTokenUserHandler = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const order = await getByTokenUserOrder(id);
+        res.status(200).json(order);
+    } catch (error) {
+        res.status(400).json( { error: error.message } )
+    }
+}
 
 module.exports = {
     getAllOrdersHandler,
-    getByIdOrderHandler
+    getByIdOrderHandler,
+    getByTokenUserHandler
 }
