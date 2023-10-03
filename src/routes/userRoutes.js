@@ -32,26 +32,77 @@ const getReviewHandler = require('../handlers/userHandlers/getReviewHandler')
 
 
 // Creación - Autenticación - Confirmación (users)
+
+router.get("/:id", getUserById);
+router.get("/email/:email", getUserByEmailHandler);
 router.post("/", createUserHandler)
 router.post("/auth", createAuth0UserHandler)
 router.post("/login", authenticateUserHandler)
-router.post('/confirm/:token', confirmAccountHandler)
-router.post('/emailuser', getUserByEmailHandler)
 router.post('/addreview', addReviewHandler)
 router.post('/showreview', showReviewHandler)
 router.get('/getreviews', getReviewHandler)
-router.put('/editimage', editImageUserHandler)
-router.put('/editname', editNameUserHandler)
-router.put('/delete', deleteUserHandler)
-router.post('/reset-password', resetPassword)
-router.route('/reset-password/:token').get(testToken).post(newPassword)
+
 
 router.get('/profile', checkAuth, profile)
 
-router.get("/", getAllUsers)
-router.get("/name?", getUserByName)
+
 router.get("/token/:token", getUserByToken);
-router.get("/:id", getUserById)
+router.post("/confirm/:token", confirmAccountHandler);
+router.put("/editimage", editImageUserHandler);
+router.put("/editname", editNameUserHandler);
+router.put("/delete", deleteUserHandler);
+router.post("/reset-password", resetPassword);
+router.route("/reset-password/:token").get(testToken).post(newPassword);
+
+router.get("/", getAllUsers);
+router.get("/name?", getUserByName);
+
+// router.get("/:id", getUserById);
+// router.get("/email/:email", getUserByEmailHandler);
+// router.post("/", createUserHandler)
+// router.post("/auth", createAuth0UserHandler)
+// router.post("/login", authenticateUserHandler)
+// router.post('/addreview', addReviewHandler)
+// router.post('/showreview', showReviewHandler)
+// router.get('/getreviews', getReviewHandler)
+
+
+// router.get('/profile', checkAuth, profile)
+
+
+// router.get("/token/:token", getUserByToken);
+// router.post("/confirm/:token", confirmAccountHandler);
+// router.put("/editimage", editImageUserHandler);
+// router.put("/editname", editNameUserHandler);
+// router.put("/delete", deleteUserHandler);
+// router.post("/reset-password", resetPassword);
+// router.route("/reset-password/:token").get(testToken).post(newPassword);
+
+// router.get("/", getAllUsers);
+// router.get("/name?", getUserByName);
+
+
+
+// router.post("/", createUserHandler)
+// router.post("/auth", createAuth0UserHandler)
+// router.post("/login", authenticateUserHandler)
+// router.post('/confirm/:token', confirmAccountHandler)
+// router.post('/emailuser', getUserByEmailHandler)
+// router.post('/addreview', addReviewHandler)
+// router.post('/showreview', showReviewHandler)
+// router.get('/getreviews', getReviewHandler)
+// router.put('/editimage', editImageUserHandler)
+// router.put('/editname', editNameUserHandler)
+// router.put('/delete', deleteUserHandler)
+// router.post('/reset-password', resetPassword)
+// router.route('/reset-password/:token').get(testToken).post(newPassword)
+
+// router.get('/profile', checkAuth, profile)
+
+// router.get("/", getAllUsers)
+// router.get("/name?", getUserByName)
+// router.get("/token/:token", getUserByToken);
+// router.get("/:id", getUserById)
 
 
 
