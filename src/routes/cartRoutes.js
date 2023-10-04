@@ -8,11 +8,11 @@ const getCartByClientIdHandler = require("../handlers/cartHandlers/getCartByClie
 
 const cartRoutes = Router();
 
-cartRoutes.post("/create", postCartHandler);
-cartRoutes.put("/add/:userid/product", addItemCartHandler);
+// cartRoutes.post("/create", postCartHandler);
+cartRoutes.put("/addItem", addItemCartHandler);
 cartRoutes.put("/delete/:userid/product", deleteProductHandler);
 cartRoutes.put("add/:userid/quantity", addQuantityCartHandler);
 cartRoutes.put("delete/:userid/quantity", deleteQuantityCartHandler);
-cartRoutes.get("/:userid", getCartByClientIdHandler);
+// cartRoutes.get("/:userid", getCartByClientIdHandler);
 
 module.exports = cartRoutes;
