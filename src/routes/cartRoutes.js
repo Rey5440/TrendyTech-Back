@@ -7,9 +7,9 @@ const getCartByClientIdHandler = require("../handlers/cartHandlers/getCartByClie
 const cartRoutes = Router();
 
 cartRoutes.post("/create", postCartHandler);
-cartRoutes.post("/addItem/:cartID/items", addItemCartHandler);
-cartRoutes.delete("/delete/:cartID/items/:itemID", deleteItemHandler);
-cartRoutes.get("/carts/:cartID", getCartByIdHandler);
-cartRoutes.get("/carts/:clientID", getCartByClientIdHandler);
+// cartRoutes.put("/addItem", addItemCartHandler);  // /:cartID/items  POR BODY
+// cartRoutes.put("/delete", deleteItemHandler); // :cartID/items/:itemID POR BODY
+// cartRoutes.get("/:cartID", getCartByIdHandler);
+// cartRoutes.get("/client/:clientID", getCartByClientIdHandler);
 
 module.exports = cartRoutes;
