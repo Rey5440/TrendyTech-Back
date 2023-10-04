@@ -7,10 +7,10 @@ module.exports = (sequelize) => {
       autoIncrement: true,
       primaryKey: true,
     },
-    mpId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+    // mpId: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    // },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
