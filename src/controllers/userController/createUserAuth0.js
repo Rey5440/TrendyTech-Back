@@ -12,6 +12,7 @@ const createAuth0User = async (auth0UserData) => {
       password: auth0UserData.sub,
       token: auth0UserData.token,
       image: auth0UserData.picture,
+      confirmated: true,
     });
     return user.dataValues;
   }
@@ -30,7 +31,6 @@ const createAuth0User = async (auth0UserData) => {
       return updatedUser[0].dataValues; // Devuelve el objeto actualizado
     }
   }
-  
 };
 
 module.exports = {
