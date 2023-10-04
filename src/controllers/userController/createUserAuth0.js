@@ -1,25 +1,38 @@
-const { User } = require('../../db/db.js')
+const { User } = require("../../db/db.js");
 
 const createAuth0User = async (auth0UserData) => {
+  const existingUser = await User.findOne({
+    where: { email: auth0UserData.email },
+  });
 
-    const existingUser = await User.findOne({ where: { email: auth0UserData.email } })
+  if (!existingUser) {
+    const user = await User.create({
+      name: auth0UserData.name,
+      email: auth0UserData.email,
+      password: auth0UserData.sub,
+      token: auth0UserData.token,
+      image: auth0UserData.picture,
+      confirmated: true,
+    });
+    return user.dataValues;
+  }
+  if (existingUser) {
+    if (existingUser.token !== auth0UserData.token) {
+      const [_, updatedUser] = await User.update(
+        {
+          token: auth0UserData.token,
+        },
+        {
+          where: { email: existingUser.email },
+          returning: true, // Esto devuelve el objeto actualizado
+        }
+      );
 
-    if (existingUser) {
-        throw new Error("Usuario Auth0 ya existe en la Database");
-    };
-
-    const user = await User.create({ //find or create
-        name: auth0UserData.name,
-        email: auth0UserData.email,
-        password: auth0UserData.sub,
-        token: auth0UserData.sub,
-        image: auth0UserData.picture
-
-    })
-
-    return user;
-}
+      return updatedUser[0].dataValues; // Devuelve el objeto actualizado
+    }
+  }
+};
 
 module.exports = {
-    createAuth0User
-}
+  createAuth0User,
+};

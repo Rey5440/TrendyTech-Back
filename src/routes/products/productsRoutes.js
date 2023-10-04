@@ -9,10 +9,12 @@ const getAllTypesHandler = require("../../handlers/products/getAllTypesHandlers"
 
 const {productsHandler} = require('../../handlers/products/filterProductsHandler');
 const updateProductHandler = require("../../handlers/products/updateProductHandler");
+const deleteProductHandler = require("../../handlers/products/deleteProductHandler");
 
 router.get("/", getAllOrByNameProducts);
 router.get('/name?', getAllOrByNameProducts)
 router.get('/filter?', productsHandler)
+router.put('/delete', deleteProductHandler)
 router.get("/brands", getAllBrandsHandler)
 router.get("/colors", getAllColorsHandler)
 router.get("/types", getAllTypesHandler)

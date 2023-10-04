@@ -1,14 +1,13 @@
-const {orders}= require('../../db/db.js')
+const { Order, User } = require("../../db/db.js");
 
-const postOrders = async (products,iduser,total,idpreference) => {
-    const response = await orders.create({
-        products,
-        iduser,
-        total,
-        idpreference
-    })
-    if(!response)throw Error('Hubo un error al crear la orden')
-    return response
-}
+const postOrders = async (products, userId, total) => {
+  const newOrder = await Order.create({
+    products,
+    total,
+    userId
+  });
+  if (!newOrder) throw Error("Hubo un error al crear la orden");
+  return newOrder;
+};
 
-module.exports = postOrders
+module.exports = postOrders;

@@ -1,21 +1,15 @@
 require("dotenv").config();
 const { Sequelize } = require("sequelize");
-const { DB_DEPLOY } = process.env;
+const { DB_DEPLOY, DB_LOCAL } = process.env;
 const path = require("path");
 const fs = require("fs");
 
-const sequelize = new Sequelize(DB_DEPLOY, {
+const sequelize = new Sequelize(DB_LOCAL, {
   host: "localhost",
   dialect: "postgres",
   logging: false,
   native: false,
-  dialectOptions: {
-    ssl: {
-      require: true
-    }
-  }
 });
-
 
 const basename = path.basename(__filename);
 
@@ -42,23 +36,32 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { User, TypeProduct, Product, Brand, Color, Sales} = sequelize.models;
-
+const { User, TypeProduct, Product, Brand, Color, Sales, Order, Reviews } =
+  sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-Product.belongsTo(Brand, {foreignKey: 'brandId'});
+Product.belongsTo(Brand, { foreignKey: "brandId" });
 
-Product.belongsTo(Color, {foreignKey: 'colorId'});
+Product.belongsTo(Color, { foreignKey: "colorId" });
 
-Product.belongsTo(TypeProduct, {foreignKey: 'typeId'});
+Product.belongsTo(TypeProduct, { foreignKey: "typeId" });
 
-Product.hasMany(Sales, {foreignKey: 'productsId'});
+// Product.belongsToMany(Order, {through:'ordersProduct'}, {foreignKey: 'productsId'});
 
-User.hasOne(Sales, {foreignKey: 'userId'});
+// Order.belongsToMany(Product, {through:'ordersProduct'}, {foreignKey: 'ordersId'});
+
+User.hasMany(Order);
+Order.belongsTo(User, { foreignKey: "userId" });
+
+Reviews.belongsTo(User);
+User.hasMany(Reviews);
+
+// Una review pertenece a un producto, pero un producto puede tener muchas reviews
+Reviews.belongsTo(Product);
+Product.hasMany(Reviews);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');
 };
-
