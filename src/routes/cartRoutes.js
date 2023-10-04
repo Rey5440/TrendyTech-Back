@@ -13,7 +13,6 @@ cartRoutes.put("/add/:userid/product", addItemCartHandler);
 cartRoutes.put("/delete/:userid/product", deleteProductHandler);
 cartRoutes.put("add/:userid/quantity", addQuantityCartHandler);
 cartRoutes.put("delete/:userid/quantity", deleteQuantityCartHandler);
-cartRoutes.get("/:cartid", getCartByIdHandler);
 cartRoutes.get("/:userid", getCartByClientIdHandler);
 
 module.exports = cartRoutes;
