@@ -21,6 +21,7 @@ const authenticateUser = async ( email, password ) => {
             name: user.name,
             email: user.email,
             token: generateJWT(user.id),
+            isDeleted: user.isDeleted,
         };
     } else {
         throw new Error("Password incorrecto");
