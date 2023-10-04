@@ -5,10 +5,13 @@ const path = require("path");
 const fs = require("fs");
 
 const sequelize = new Sequelize(DB_DEPLOY, {
-  host: "localhost",
-  dialect: "postgres",
   logging: false,
   native: false,
+  dialectOptions: {
+    ssl: {
+      require: true
+    }
+  }
 });
 
 const basename = path.basename(__filename);
