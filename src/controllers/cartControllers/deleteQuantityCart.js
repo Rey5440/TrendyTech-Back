@@ -8,6 +8,7 @@ const deleteQuantityCart= async (userid,productid)=>{
         if (product.id==productid){
             if (product.quantity>1){
             product.quantity--;
+            cart.total-=product.price
             }
             console.log(product.quantity)
         }

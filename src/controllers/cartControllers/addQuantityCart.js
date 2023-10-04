@@ -6,9 +6,10 @@ const addQuantityCart= async (userid,productid)=>{
     cart.products.forEach(product => {
         console.log(product.quantity)
         product.id==productid&&product.quantity++;
+        cart.total+=product.price;
     });
     await cart.save();
-    
+    console.log(cart)
     return cart
 }
 

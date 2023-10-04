@@ -1,9 +1,9 @@
-const deleteProductController = require("../../controllers/cartControllers/deleteProdCartController")
+const deleteProdCartController = require("../../controllers/cartControllers/deleteProdCartController")
 
 const deleteProductHandler = async (req, res) => {
-    const { idUser, idProducto } = req.body;
+    const { userid, productid } = req.body;
     try {
-        const product = await deleteProductController(idUser, idProducto);
+        const product = await deleteProdCartController(userid, productid);
         res.status(200).json(product)
     } catch (error) {
         return res.status(400).json({ message: error.message })
