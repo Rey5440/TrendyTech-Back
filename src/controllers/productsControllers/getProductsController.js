@@ -45,6 +45,7 @@ const getDBinfo = async () => {
       price: product.price,
       description: product.description,
       stock: product.stock,
+      discount: product.discount,
       images: product.images,
       isDeleted: product.isDeleted,
       brand: product.brand.name, 
