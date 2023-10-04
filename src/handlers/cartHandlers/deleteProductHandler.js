@@ -1,11 +1,13 @@
-
+const deleteProductController = require("../../controllers/cartControllers/deleteProdCartController")
 
 const deleteProductHandler = async (req, res) => {
-    const { productId } = req.body;
+    const { idUser, idProducto } = req.body;
     try {
-        const product = await deleteProductController(productId);
+        const product = await deleteProductController(idUser, idProducto);
         res.status(200).json(product)
     } catch (error) {
         return res.status(400).json({ message: error.message })
     }
 }
+
+module.exports = deleteProductHandler;
