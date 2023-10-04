@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const postCartHandler = require("../handlers/cartHandlers/postCartHandler");
 const addItemCartHandler = require("../handlers/cartHandlers/addItemCartHandler");
-const deleteItemHandler = require("../handlers/cartHandlers/deleteItemHandler");
+const deleteProductHandler = require("../handlers/cartHandlers/deleteProductHandler");
 const getCartByClientIdHandler = require("../handlers/cartHandlers/getCartByClientIdHandler");
 
 const cartRoutes = Router();
