@@ -1,17 +1,20 @@
-const { Favorite, Product } = require("../../db/db");
-//favoritos de un usuario
-async function getFavoritesControllers(userId) {
-  try {
-    // Busca los productos favoritos del usuario
-    const favorites = await Favorite.findAll({
-      where: { userId },
-      include: [{ model: Product, as: "product" }],
-    });
+const { Favorite } = require("../../db/db");
 
-    return favorites;
+async function getFavoritesControllers(userId) {
+  console.log("Este es id que recibe por params", userId);
+  try {
+    const favorite = await Favorite.findOne({
+      where: { userId: userId}
+    })
+
+    if(!favorite){
+      return { error: "El usuario no tiene lista de favoritos"}
+    }
+    
+    return favorite.favorites
   } catch (error) {
-    console.error(error);
-    throw error;
+    console.log(error);
+    throw error; 
   }
 }
 

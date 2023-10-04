@@ -8,10 +8,10 @@ async function getFavoritesHandlers(req, res) {
     // Llama a la función 'getFavorites' del controlador
     const userFavorites = await getFavoritesControllers(id);
 
-    if (userFavorites.length === 0) {
-      return res.status(404).json({ error: "El usuario no tiene favoritos" });
-    }
-
+   if(userFavorites.error){
+    return res.status(400).json({message: userFavorites.error})
+   }
+   
     return res.status(200).json({ userFavorites });
   } catch (error) {
     console.error(error);

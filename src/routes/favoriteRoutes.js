@@ -9,7 +9,7 @@ const getFavoritesHandlers = require("../handlers/favorites/getFavoritesHandlers
 favoriteRoutes.post("/", addFavoritesHandlers);
 
 // Ruta para quitar producto  favoritos
-favoriteRoutes.delete("/:id-favorite", removeFavoritesHandlers);
+favoriteRoutes.post("/delete", removeFavoritesHandlers);
 
 // Ruta para obtener la lista de favoritos de un usuario
 favoriteRoutes.get("/:id", getFavoritesHandlers);
