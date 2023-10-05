@@ -1,4 +1,5 @@
-const { Order, Product } = require("../../db/db.js");
+const { Order, Product, User } = require("../../db/db.js");
+const { emailConfirmBuy } = require("../../helpers/email.js");
 
 const putOrders = async (userId, status, ticket) => {
   const updateOrder = await Order.findOne({ where: { userId } });
@@ -29,6 +30,13 @@ const putOrders = async (userId, status, ticket) => {
   }
 
   await updateOrder.save();
+
+  const user = await User.findOne({
+    where: { id: userId },
+    attributes: ["email", "name"],
+  });
+
+  emailConfirmBuy(user);
   return updateOrder;
 };
 module.exports = putOrders;
