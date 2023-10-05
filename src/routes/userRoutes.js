@@ -45,6 +45,7 @@ const getReviewHandler = require("../handlers/userHandlers/getReviewHandler");
 
 // Creación - Autenticación - Confirmación (users)
 router.get("/profile", checkAuth, profile);
+router.get("/getreviews", getReviewHandler);
 router.get("/:id", getUserById);
 router.get("/email/:email", getUserByEmailHandler);
 router.post("/", createUserHandler);
@@ -52,7 +53,6 @@ router.post("/auth", createAuth0UserHandler);
 router.post("/login", authenticateUserHandler);
 router.post("/addreview", addReviewHandler);
 router.post("/showreview", showReviewHandler);
-router.get("/getreviews", getReviewHandler);
 
 router.get("/token/:token", getUserByToken);
 router.post("/confirm/:token", confirmAccountHandler);
