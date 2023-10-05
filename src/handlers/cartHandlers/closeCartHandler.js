@@ -2,7 +2,6 @@ const closeCartController = require("../../controllers/cartControllers/closeCart
 
 const closeCartHandler = async (req, res) => {
   const { userId } = req.params;
-
   try {
     const response = await closeCartController(userId);
     return res.status(200).json(response);

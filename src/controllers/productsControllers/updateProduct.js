@@ -1,20 +1,23 @@
 const { Product } = require("../../db/db");
-const createBrand = require("../brandsControllers/createBrand");
-const createColor = require("../colorsControllers/createColor");
-const createType = require("../typesControllers/createType");
-const {
-  validatePrice,
-  validateDescription,
-  validateStock,
-  validateName,
-  validateBrand,
-  validateColor,
-  validateType,
-} = require("../../helpers/validationUpdateHelpers");
+const createBrand = require("../brandsControllers/createBrand")
+const createColor = require("../colorsControllers/createColor")
+const createType = require("../typesControllers/createType")
+const { validatePrice, validateDiscount, validateDescription, validateStock, validateName, validateBrand, validateColor,
+    validateType } = require("../../helpers/validationUpdateHelpers")
 
 const updateProduct = async (updateData) => {
-  const { id, name, price, description, stock, images, brand, color, type } =
-    updateData;
+  const {
+    id,
+    name,
+    price,
+    discount,
+    description,
+    stock,
+    images,
+    brand,
+    color,
+    type,
+  } = updateData;
 
   const validationErrors = {};
 
@@ -22,6 +25,12 @@ const updateProduct = async (updateData) => {
   const priceErrors = validatePrice(price);
   if (Object.keys(priceErrors).length > 0) {
     validationErrors.price = priceErrors;
+  }
+
+  // Validar el descuento
+  const discountErrors = validateDiscount(discount);
+  if (Object.keys(discountErrors).length > 0) {
+    validationErrors.discount = discountErrors;
   }
 
   // Validar la descripción
@@ -74,6 +83,7 @@ const updateProduct = async (updateData) => {
     {
       name,
       price,
+      discount,
       description,
       stock,
       images,
