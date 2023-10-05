@@ -356,9 +356,7 @@ const emailForgetPassword = async (data) => {
   });
 };
 
-const emailConfirmBuy = async (data) => {
-  const { email, name } = data;
-
+const emailConfirmBuy = async (user, products, total) => {
   // Se crea un objeto transport utilizando nodemailer.createTransport(). Este objeto se configura con los datos de autenticación del servidor de correo electrónico (host, puerto, usuario y contraseña) que se obtienen de las variables de entorno (process.env).
   const transport = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
@@ -373,18 +371,61 @@ const emailConfirmBuy = async (data) => {
     },
   });
 
+  const productsHTML = products
+    .map(
+      (producto) => `
+      <tr>
+        <td>${producto.name}</td>
+        <td>${producto.quantity}</td>
+        <td><img src="${producto.images[0]}" alt="${producto.name}" style="max-width: 50px;"></td>
+        <td>$${producto.price}</td>
+      </tr>
+    `
+    )
+    .join("");
+
+  const html = `
+  <!-- Espacio para el logo -->
+  <div style="background-color: #f8f8f8; text-align: center; padding: 20px;">
+    <img src="https://res.cloudinary.com/dntrwijx5/image/upload/v1696459130/imagenes/lmm9hfi3kfntthj5bdj6.png" alt="Logo de la página" style="max-width: 150px;">
+  </div>
+  <img height="auto" src="https://res.cloudinary.com/dntrwijx5/image/upload/v1696458437/imagenes/k7lhehdekfjaxxxxpfcw.png" style="border:none;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" title="" width="600" />
+  <!-- Espacio para el banner horizontal -->
+  <div style="text-align: center; padding: 10px;"></div>
+
+  <!-- Tabla de productos (generada dinámicamente) -->
+  <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+    <tr>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Imagen</th>
+      <th>Precio</th>
+    </tr>
+    ${productsHTML}
+  </table>
+
+  <!-- Fila para el total -->
+  <div style="text-align: center; font-weight: bold; margin-right: 20px;">Total: $${total.toFixed(
+    2
+  )}</div>
+
+  <!-- Botón para volver al perfil -->
+  <div style="text-align: center; margin-top: 20px;">
+    <a href="${
+      process.env.FRONTEND_URL
+    }/#/home" style="background-color: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Volver a home</a>
+  </div>
+`;
+
   //Informacion del email
   // A continuación, se define un objeto info que contiene la información del correo electrónico a enviar. El correo electrónico incluye un remitente, destinatario, asunto, texto plano y contenido HTML. Se utiliza el enlace ${process.env.FRONTEND_URL}/confirmar/${token} para generar un enlace de confirmación de cuenta en el contenido HTML del correo electrónico. El token se inserta en el enlace y se enviará al usuario para que pueda confirmar su cuenta haciendo clic en él.
 
   const info = await transport.sendMail({
     from: '"Trendy Tech " <cuentas@trendy-spot.com>',
-    to: email,
+    to: user.email,
     subject: "Gracias por su compra! Fe no me nal.",
     text: "Compra en Trendy-Tech",
-    html: `<p>Hola: ${name}, felicidades por tu compra!</p>
-
-              <p>Si no solicitaste esta petición ignora este mensaje</p>
-          `,
+    html: html,
   });
 };
 
