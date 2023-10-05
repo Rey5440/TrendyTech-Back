@@ -4,11 +4,25 @@ const { emailConfirmBuy } = require("../../helpers/email.js");
 const putOrders = async (userId, status, ticket) => {
   const updateOrder = await Order.findOne({ where: { userId } });
 
+  const user = await User.findOne({
+    where: { id: userId },
+    attributes: ["email", "name"],
+  });
+
   if (updateOrder) {
     if (status === "approved") {
       updateOrder.status = true;
       updateOrder.ticket = ticket;
     }
+
+    const order = updateOrder.dataValues;
+    const productsPriceQuantity = order.products.map((prod) => {
+      const nuevoPrecio = prod.price * prod.quantity;
+      return { ...prod, price: nuevoPrecio };
+    });
+    // Llamar a emailConfirmBuy con los datos actualizados
+    emailConfirmBuy(user, productsPriceQuantity, updateOrder.total);
+
     // control de stock
     let stockErrors = ["No hay stock suficiente en el producto: "];
     updateOrder.products.forEach(async (prod) => {
@@ -31,12 +45,6 @@ const putOrders = async (userId, status, ticket) => {
 
   await updateOrder.save();
 
-  const user = await User.findOne({
-    where: { id: userId },
-    attributes: ["email", "name"],
-  });
-
-  emailConfirmBuy(user);
   return updateOrder;
 };
 module.exports = putOrders;
