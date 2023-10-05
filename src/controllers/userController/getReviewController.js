@@ -5,7 +5,7 @@ const getReviewController = async () => {
         const allReviews = await Reviews.findAll();
         return allReviews;
     } catch (error) {
-        console.error("Error al obtener todos los colores:", error);
+        console.error("Error al obtener todas las reviews:", error);
         throw new Error(error.message);
     }
 };
