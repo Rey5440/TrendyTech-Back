@@ -38,15 +38,29 @@ const {
   getUserByToken,
 } = require("../handlers/userHandlers/getUserByTokenHandler");
 
+const addReviewHandler = require("../handlers/userHandlers/addReviewHandler");
+const showReviewHandler = require("../handlers/userHandlers/showReviewHandler");
+const getReviewHandler = require("../handlers/userHandlers/getReviewHandler");
+
+
 // const {} = require('')
 
 // Creación - Autenticación - Confirmación (users)
+
+router.get("/profile", checkAuth, profile);
+
+router.get("/:id", getUserById);
+router.get("/email/:email", getUserByEmailHandler);
+
 router.post("/", createUserHandler);
 router.post("/auth", createAuth0UserHandler);
 router.post("/login", authenticateUserHandler);
-router.get("/profile", checkAuth, profile);
-router.get("/:id", getUserById);
-router.get("/email/:email", getUserByEmailHandler);
+router.post("/addreview", addReviewHandler);
+router.post("/showreview", showReviewHandler);
+router.get("/getreviews", getReviewHandler);
+
+
+
 router.get("/token/:token", getUserByToken);
 router.post("/confirm/:token", confirmAccountHandler);
 router.put("/editimage", editImageUserHandler);

@@ -20,8 +20,8 @@
 //   const { email, name } = updateOrder.User; // Accede al usuario asociado a la orden
 
 //   emailConfirmBuy({
-//     email: User.email,
-//     name: User.name,
+//     email: email,
+//     name:name,
 //   });
 //   // Control de stock
 //   let stockErrors = ["No hay stock suficiente en el producto:"];

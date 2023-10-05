@@ -37,10 +37,15 @@ sequelize.models = Object.fromEntries(capsEntries);
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 // <<<<<<< HEAD
-// const { User, TypeProduct, Product, Brand, Color, Sales, Order, Reviews} = sequelize.models;
+// // <<<<<<< HEAD
+// // const { User, TypeProduct, Product, Brand, Color, Sales, Order, Reviews} = sequelize.models;
 
+// // =======
+// const { User, TypeProduct, Product, Brand, Color, Sales, Order } =
+//   sequelize.models;
+// // >>>>>>> Loker
 // =======
-const { User, TypeProduct, Product, Brand, Color, Sales, Order } =
+const { User, TypeProduct, Product, Brand, Color, Sales, Order, Reviews } =
   sequelize.models;
 // >>>>>>> Loker
 
@@ -56,9 +61,10 @@ Product.belongsTo(TypeProduct, { foreignKey: "typeId" });
 
 // Order.belongsToMany(Product, {through:'ordersProduct'}, {foreignKey: 'ordersId'});
 
-// <<<<<<< HEAD
-// User.hasMany(Order, {foreignKey: 'userId'});
-// Order.belongsTo(User, {foreignKey: 'userId'});
+
+User.hasMany(Order);
+Order.belongsTo(User, { foreignKey: "userId" });
+
 
 // Reviews.belongsTo(User);
 // User.hasMany(Reviews);
@@ -67,11 +73,14 @@ Product.belongsTo(TypeProduct, { foreignKey: "typeId" });
 // Reviews.belongsTo(Product);
 // Product.hasMany(Reviews);
 
+// <<<<<<< HEAD
+
+// // =======
+// User.hasMany(Order);
+// Order.belongsTo(User, { foreignKey: "userId" });
+// // >>>>>>> Loker
 
 // =======
-User.hasMany(Order);
-Order.belongsTo(User, { foreignKey: "userId" });
-// >>>>>>> Loker
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
