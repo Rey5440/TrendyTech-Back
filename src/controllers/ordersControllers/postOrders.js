@@ -1,4 +1,4 @@
-const { Order, User } = require("../../db/db.js");
+const { Order } = require("../../db/db.js");
 
 const postOrders = async (products, userId, total) => {
   const newOrder = await Order.create({
