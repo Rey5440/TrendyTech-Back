@@ -1,10 +1,10 @@
 require("dotenv").config();
 const { Sequelize } = require("sequelize");
-const { DB_DEPLOY, DB_LOCAL } = process.env;
+const { DB_DEPLOY } = process.env;
 const path = require("path");
 const fs = require("fs");
 
-const sequelize = new Sequelize(DB_LOCAL, {
+const sequelize = new Sequelize(DB_DEPLOY, {
   host: "localhost",
   dialect: "postgres",
   logging: false,
