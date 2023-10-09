@@ -4,15 +4,24 @@ const { DB_DEPLOY, DB_LOCAL } = process.env;
 const path = require("path");
 const fs = require("fs");
 
-const sequelize = new Sequelize(DB_DEPLOY, {
+// const sequelize = new Sequelize(DB_DEPLOY, {
+//   logging: false,
+//   native: false,
+//   dialectOptions: {
+//     ssl: {
+//       require: true
+//     }
+//   }
+// });
+
+const sequelize = new Sequelize(DB_LOCAL, {
+  host: "localhost",
+  dialect: "postgres",
   logging: false,
   native: false,
-  dialectOptions: {
-    ssl: {
-      require: true
-    }
-  }
 });
+
+
 
 const basename = path.basename(__filename);
 
@@ -39,7 +48,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { User, TypeProduct, Product, Brand, Color, Sales, Order, Reviews } =
+const { User, TypeProduct, Product, Brand, Color, Sales, Order, Reviews, Favorite } =
   sequelize.models;
 
 // Aca vendrian las relaciones
@@ -63,6 +72,10 @@ User.hasMany(Reviews);
 // Una review pertenece a un producto, pero un producto puede tener muchas reviews
 Reviews.belongsTo(Product);
 Product.hasMany(Reviews);
+
+//Favoritos
+User.belongsTo(Favorite, { foreignKey: "favoriteId" });
+Favorite.belongsTo(User, { foreignKey: "userId" });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
