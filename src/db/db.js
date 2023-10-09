@@ -4,22 +4,22 @@ const { DB_DEPLOY, DB_LOCAL } = process.env;
 const path = require("path");
 const fs = require("fs");
 
-// const sequelize = new Sequelize(DB_DEPLOY, {
-//   logging: false,
-//   native: false,
-//   dialectOptions: {
-//     ssl: {
-//       require: true
-//     }
-//   }
-// });
-
-const sequelize = new Sequelize(DB_LOCAL, {
-  host: "localhost",
-  dialect: "postgres",
+const sequelize = new Sequelize(DB_DEPLOY, {
   logging: false,
   native: false,
+  dialectOptions: {
+    ssl: {
+      require: true
+    }
+  }
 });
+
+// const sequelize = new Sequelize(DB_LOCAL, {
+//   host: "localhost",
+//   dialect: "postgres",
+//   logging: false,
+//   native: false,
+// });
 
 
 
