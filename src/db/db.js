@@ -9,9 +9,10 @@ const sequelize = new Sequelize(DB_DEPLOY, {
   native: false,
   dialectOptions: {
     ssl: {
-      require: true
-    }
-  }
+      require: true,
+      rejectUnauthorized: false, // Ignorar la verificación del certificado
+    },
+  },
 });
 
 // const sequelize = new Sequelize(DB_LOCAL, {
@@ -20,8 +21,6 @@ const sequelize = new Sequelize(DB_DEPLOY, {
 //   logging: false,
 //   native: false,
 // });
-
-
 
 const basename = path.basename(__filename);
 
@@ -48,8 +47,17 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { User, TypeProduct, Product, Brand, Color, Sales, Order, Reviews, Favorite } =
-  sequelize.models;
+const {
+  User,
+  TypeProduct,
+  Product,
+  Brand,
+  Color,
+  Sales,
+  Order,
+  Reviews,
+  Favorite,
+} = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
