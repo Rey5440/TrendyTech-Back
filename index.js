@@ -8,7 +8,7 @@ const PORT = process.env.PORT;
 
 conn.sync({ force: false }).then(() => {
   server.listen(PORT, async () => {
-    await getDBinfo();
+    // await getDBinfo();
     console.log(`Server listening on ${PORT}`);
   });
 });
