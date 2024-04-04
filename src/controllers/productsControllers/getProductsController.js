@@ -15,46 +15,49 @@ const searchProductsByName = async (name) => {
 };
 
 const getDBinfo = async () => {
-  const DB = await Product.findAll({
-    include: [
-      {
-        model: Brand,
-        as: "brand",
-        attributes: ["name"],
-      },
-      {
-        model: Color,
-        as: "color",
-        attributes: ["name"],
-      },
-      {
-        model: TypeProduct,
-        as: "typeProduct",
-        attributes: ["name"],
-      },
-    ],
-  });
+  try {
+    const DB = await Product.findAll({
+      include: [
+        {
+          model: Brand,
+          as: "brand",
+          attributes: ["name"],
+        },
+        {
+          model: Color,
+          as: "color",
+          attributes: ["name"],
+        },
+        {
+          model: TypeProduct,
+          as: "typeProduct",
+          attributes: ["name"],
+        },
+      ],
+    });
+    if (!DB.length) {
+      return insertProduct(objProducts);
+    }
 
-  if (!DB.length) {
-    return insertProduct(objProducts);
+    // Mapear los resultados para obtener solo los datos relevantes
+    const result = DB.map((product) => ({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      description: product.description,
+      stock: product.stock,
+      discount: product.discount,
+      images: product.images,
+      isDeleted: product.isDeleted,
+      brand: product.brand.name,
+      color: product.color.name,
+      type: product.typeProduct.name,
+    }));
+
+    return result;
+  } catch (error) {
+    console.error(error);
   }
-
-  // Mapear los resultados para obtener solo los datos relevantes
-  const result = DB.map((product) => ({
-    id: product.id,
-    name: product.name,
-    price: product.price,
-    description: product.description,
-    stock: product.stock,
-    discount: product.discount,
-    images: product.images,
-    isDeleted: product.isDeleted,
-    brand: product.brand.name,
-    color: product.color.name,
-    type: product.typeProduct.name,
-  }));
-
-  return result;
 };
 
 const getProductById = async (id) => {

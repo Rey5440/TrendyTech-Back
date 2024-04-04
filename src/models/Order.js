@@ -1,31 +1,34 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  sequelize.define("order", {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    status:{
+  sequelize.define(
+    "order",
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      status: {
         type: DataTypes.BOOLEAN,
-        defaultValue:false
-    },
-    total:{
+        defaultValue: false,
+      },
+      total: {
         type: DataTypes.INTEGER,
         allowNull: false,
-    },
-    ticket:{
+      },
+      ticket: {
         type: DataTypes.STRING,
         allowNull: true,
-        defaultValue:'null'
-    },
-    products:{
+        defaultValue: "null",
+      },
+      products: {
         type: DataTypes.ARRAY(DataTypes.JSON),
         allowNull: false,
+      },
+    },
+    {
+      timestamps: true,
     }
-    
-  },{
-    timestamps:true
-  });
+  );
 };
